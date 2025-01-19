@@ -7,7 +7,7 @@ export default function Navbar() {
     <div className="border-b hr-color fixed top-0 z-50 w-full bg-primary text-white px-10 p-3 ">
       <div className="flex justify-between gap-2">
         <div className="flex gap-6 my-auto">
-          <Link to={'#'} className="font-bold text-2xl text-blue-500">HoYoLAB</Link>
+          <Link to={'/home'} className="font-bold text-2xl text-blue-500">HoYoLAB</Link>
           <Link to={'#'} className="font-semibold my-auto">Beranda</Link>
           <Link to={'#'} className="font-semibold my-auto">Kelompok</Link>
         </div>

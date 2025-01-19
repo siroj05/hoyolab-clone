@@ -2,8 +2,8 @@ import Posts from "@/components/posts/posts";
 
 export default function Home () {
   return (
-    <div>
+    <main>
       <Posts/>
-    </div>
+    </main>
   )
 }

@@ -3,6 +3,7 @@ import ProtectedRoutes from "../pages/protectedRoutes";
 import AccountCenter from "@/pages/AccountCenter/AccountCenter";
 import Home from "@/pages/Home/Home";
 import MainLayout from "@/layouts/MainLayout";
+import NewArticle from "@/pages/NewArticle/NewArticle";
 
 export default function AppRoutes () {
   return(
@@ -12,6 +13,7 @@ export default function AppRoutes () {
         <Route path='/home' element={<Home/>}/>
         <Route element={<ProtectedRoutes/>}>
           <Route path='/accountCenter' element={<AccountCenter/>}/>
+          <Route path='/newArticle' element={<NewArticle/>}/>
         </Route>
       </Route>
     </Routes>

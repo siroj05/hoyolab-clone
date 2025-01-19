@@ -76,3 +76,11 @@ body {
 .bg-primary {
   background-color: rgb(27, 29, 42);
 }
+
+.bg-secondary {
+  background-color: rgb(52, 55, 70);
+}
+
+.hr-color-secondary {
+  border-color: rgb(52, 55, 70);
+}

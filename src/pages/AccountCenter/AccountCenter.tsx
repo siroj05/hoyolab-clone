@@ -1,7 +1,7 @@
 export default function AccountCenter(){
   return(
-    <div>
+    <main>
       Account Center
-    </div>
+    </main>
   )
 }
