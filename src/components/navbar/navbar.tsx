@@ -1,8 +1,25 @@
 import { Link } from "react-router-dom";
 import InputSearch from "./InputSearch";
-import { Bell, CircleUser, PencilLine } from 'lucide-react';
+import { Bell, CircleUser, PencilLine, LogIn } from 'lucide-react';
+import { useState, useRef, useEffect } from "react";
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   return (
     <div className="border-b hr-color fixed top-1 z-50 w-full bg-primary text-white px-10 p-3 ">
       <div className="flex justify-between gap-2">
@@ -12,12 +29,36 @@ export default function Navbar() {
           <Link to={'#'} className="font-semibold my-auto">Kelompok</Link>
         </div>
         <div className="w-full flex justify-center">
-          <InputSearch/>
+          <InputSearch />
         </div>
         <div className="my-auto flex gap-10">
-          <PencilLine/>
+          <PencilLine />
           <Bell />
-          <CircleUser />
+          <div className="relative" ref={dropdownRef}>
+            <button onClick={() => setOpen(!open)}>
+              <CircleUser />
+            </button>
+            {open && (
+              <div className="absolute bg-primary w-[350px] right-0 top-12 rounded-lg">
+                <div className="flex flex-col gap-4 p-3">
+                  <div className="text-left font-semibold">
+                    Pengaturan sistem
+                  </div>
+                  <div className="flex flex-col gap-3 text-sm font-semibold">
+                    <button className="text-left">Ganti Bahasa</button>
+                    <button className="text-left">Pengaturan Tampilan</button>
+                  </div>
+                </div>
+                <hr className="hr-color-secondary" />
+                <div className="my-2 text-left px-3">
+                  <button className="w-full py-1 px-1 rounded-md text-sm font-bold flex gap-2 hover:text-blue-500 hover:bg-slate-600">
+                    <LogIn className="w-4 h-4 my-auto" />
+                    Masuk
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
