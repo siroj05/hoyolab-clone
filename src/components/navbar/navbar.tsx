@@ -4,7 +4,7 @@ import { Bell, CircleUser, PencilLine } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <div className="border-b hr-color fixed top-0 z-50 w-full bg-primary text-white px-10 p-3 ">
+    <div className="border-b hr-color fixed top-1 z-50 w-full bg-primary text-white px-10 p-3 ">
       <div className="flex justify-between gap-2">
         <div className="flex gap-6 my-auto">
           <Link to={'/home'} className="font-bold text-2xl text-blue-500">HoYoLAB</Link>

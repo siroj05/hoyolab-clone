@@ -15,9 +15,16 @@ import Editor, {  BtnBold,
   Separator,
   Toolbar, } from 'react-simple-wysiwyg';
 
-export default function MyEditor() {
-  const [html, setHtml] = useState('');
-  console.log(html)
+interface Props {
+  setHtml : (val : string) => void
+  html : string
+}
+
+export default function MyEditor({
+  html,
+  setHtml
+}:Props) {
+
   function onChange(e:any) {
     setHtml(e.target.value);
   }

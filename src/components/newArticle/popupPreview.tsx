@@ -1,4 +1,5 @@
 import { X } from "lucide-react"
+import { PopupDialog } from "../popup/popup"
 
 interface Props {
   previewFile : string
@@ -18,7 +19,7 @@ export function PopupPreview({
   setIsOpen
 } : Props) {
   return (
-      previewFile && <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
+      previewFile && <PopupDialog>
         <div className="bg-secondary w-[700px] p-3 rounded-xl">
           <div className="relative">
             <p className="px-3 font-semibold">Preview</p>
@@ -47,6 +48,6 @@ export function PopupPreview({
               </button>
           </div>
         </div>
-      </div>
+      </PopupDialog>
   )
 }
