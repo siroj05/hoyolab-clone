@@ -2,10 +2,16 @@ import { Link } from "react-router-dom";
 import InputSearch from "./InputSearch";
 import { Bell, CircleUser, PencilLine, LogIn } from 'lucide-react';
 import { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { openPopup } from "../popup/popupSlice";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // const isOpenPopup = useSelector((state : RootState) => state.isPopupOpen)
+  const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -51,7 +57,7 @@ export default function Navbar() {
                 </div>
                 <hr className="hr-color-secondary" />
                 <div className="my-2 text-left px-3">
-                  <button className="w-full py-1 px-1 rounded-md text-sm font-bold flex gap-2 hover:text-blue-500 hover:bg-slate-600">
+                  <button onClick={() => dispatch(openPopup())} className="w-full py-1 px-1 rounded-md text-sm font-bold flex gap-2 hover:text-blue-500 hover:bg-slate-600">
                     <LogIn className="w-4 h-4 my-auto" />
                     Masuk
                   </button>
