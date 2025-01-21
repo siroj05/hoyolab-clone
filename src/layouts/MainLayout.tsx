@@ -1,7 +1,5 @@
-import Login from "@/components/login/login";
+import FormAuth from "@/components/auth/formAuth";
 import Navbar from "@/components/navbar/navbar";
-import { AppDispatch, RootState } from "@/store/store";
-import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 export default function MainLayout() {
@@ -13,7 +11,7 @@ export default function MainLayout() {
             <Outlet />
           </div>
       </div>
-      <Login/>
+      <FormAuth/>
     </>
   );
 }

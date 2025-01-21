@@ -9,6 +9,7 @@ interface Props {
   val: string;
   maxLength? : number
   type? : string
+  name? : string
 }
 
 export const Input = ({
@@ -43,26 +44,27 @@ export const Input = ({
   );
 };
 
-export const InputFormLogIn = ({
+export const InputFormAuth = ({
   id,
   placeholder = "",
   setVal,
   val,
-  type = 'text'
+  type = 'text',
+  name
 }: Props) => {
   return(
     <div className="relative w-full">
       <input
           onChange={(e) => setVal(e.target.value)}
           value={val}
-          className="w-full text-sm font-se px-2 py-3 bg-[#212226] border hr-color-secondary rounded-lg border-transparent focus:border-blue-500 focus:outline-none "
+          className="w-full text-sm font-se px-2 py-4 bg-[#212226] border hr-color-secondary rounded-xl border-transparent focus:border-blue-500 focus:outline-none "
           type={type}
-          name=""
+          name={name}
           placeholder={placeholder}
           id={id}
         />
       { val.length>0&&
-        <button onClick={() => setVal('')} className="absolute right-2 p-1 top-4 rounded-full bg-secondary">
+        <button onClick={() => setVal('')} className="absolute right-2 p-1 top-5 rounded-full bg-secondary">
           <X className="w-2 h-2"/>
         </button>
       }

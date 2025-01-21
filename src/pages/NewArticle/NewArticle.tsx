@@ -13,14 +13,14 @@ import { redirect, useNavigate } from "react-router-dom";
 export default function NewArticle() {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const { loading } = useSelector((state : RootState) => state.posts)
+  const { loading, error } = useSelector((state : RootState) => state.posts)
   const [selectedFile, setSelectedFile] = useState<string>();
   const [previewFile, setPreviewFile] = useState<string>();
   const [title, setTitle] = useState('');
   const [html, setHtml] = useState('');
   
 
-  const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.target as HTMLFormElement
     const formData = new FormData(form)
@@ -46,7 +46,7 @@ export default function NewArticle() {
         <hr className="hr-color-secondary my-5" />
 
         {/* form */}
-        <form action="" onSubmit={handleSubmit}>
+        <form action="" onSubmit={onSubmit}>
           <input type="hidden" name="title" value={title}/>
           <input type="hidden" name="html" value={html}/>
           <input type="hidden" name="image" value={selectedFile}/>

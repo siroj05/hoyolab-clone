@@ -15,13 +15,15 @@ export const Button = ({children, type = "button", disable = false} : Props) => 
   )
 }
 
-export const ButtonLogin = ({
+export const ButtonAuth = ({
   children,
   disable = false,
-  className=""
+  className="",
+  type="button"
 }:Props) => {
   return(
     <button 
+      type={type}
       disabled={disable}
       className={`${disable ? "bg-[#323339]" : "bg-[#556AD0]"} p-2 rounded-xl ${className}`}
       >
