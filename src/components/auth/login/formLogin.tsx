@@ -40,7 +40,7 @@ export default function FormLogin() {
             isDisable() ? "text-gray-600" : "text-white"
           }`}
         >
-          Daftar
+          Login Akun
         </div>
       </ButtonAuth>
     </form>
