@@ -2,7 +2,7 @@ import hoyoverseLogoLight from "@/assets/hoyoverse-logo-light.png";
 import { X } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { closePopup } from "../../popup/popupSlice";
+import { closePopup } from "../../../features/popup/popupSlice";
 import FormLogin from "./formRegis";
 
 interface Props {

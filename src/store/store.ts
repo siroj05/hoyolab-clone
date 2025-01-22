@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postReducer from '../pages/NewArticle/postSlice';
-import getPostsReducer from '../pages/Home/getPostsSlice'
-import isPopupOpenReducer from '../components/popup/popupSlice'
+import postReducer from '../features/newArticle/postSlice';
+import getPostsReducer from '../features/posts/getPostsSlice'
+import isPopupOpenReducer from '../features/popup/popupSlice'
 
 const store = configureStore({
   reducer: {

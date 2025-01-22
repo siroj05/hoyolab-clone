@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { LoaderCircle } from 'lucide-react';
 import { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "./postSlice";
+import { createPost } from "../../features/newArticle/postSlice";
 import { redirect, useNavigate } from "react-router-dom";
 
 export default function NewArticle() {

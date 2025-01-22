@@ -4,7 +4,7 @@ import { Bell, CircleUser, PencilLine, LogIn } from 'lucide-react';
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { openPopup } from "../popup/popupSlice";
+import { openPopup } from "../../features/popup/popupSlice";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)

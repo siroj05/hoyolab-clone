@@ -4,7 +4,7 @@ import TabPosts from "./tabPosts";
 import noPosts from "@/assets/no_post.png";
 import { AppDispatch, RootState } from "@/store/store";
 import { useEffect } from "react";
-import { getPosts } from "@/pages/Home/getPostsSlice";
+import { getPosts } from "@/features/posts/getPostsSlice";
 import { CircleUser } from "lucide-react";
 
 export default function Posts() {
