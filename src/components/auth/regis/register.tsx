@@ -28,10 +28,10 @@ export default function Register({setIsRegis}:Props) {
           <img src={hoyoverseLogoLight} alt="" width={190} />
         </div>
         <h1 className="text-2xl font-bold mb-4">Daftar</h1>
-        <FormLogin />
+        <FormLogin setIsRegis={setIsRegis}/>
         <div className="flex justify-center gap-1 font-semibold text-sm  my-5">
           <p>Sudah Memiliki Akun?</p>
-          <button className="text-[#556AD0]" onClick={() => setIsRegis(true)}>Login Akun</button>
+          <button className="text-[#556AD0]" onClick={() => setIsRegis(false)}>Login Akun</button>
         </div>
       </div>
     </div>

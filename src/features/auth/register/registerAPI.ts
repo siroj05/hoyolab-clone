@@ -18,13 +18,16 @@ export const registerUser = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       }
-      await axios.post(
-        `${baseUrl}/api/register`,
+      const {data} = await axios.post(
+        `${baseUrl}/register`,
         request,
         config
       )
+      return data
     } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Unknown error'
+      );
     }
   }
 )

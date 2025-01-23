@@ -31,7 +31,7 @@ export default function Login({setIsRegis}:Props) {
         <FormLogin />
         <div className="flex justify-between text-sm text-[#556AD0] mb-5">
           <button>Bantuan Masalah</button>
-          <button onClick={() => setIsRegis(false)}>Daftar Sekarang</button>
+          <button onClick={() => setIsRegis(true)}>Daftar Sekarang</button>
         </div>
       </div>
     </div>
