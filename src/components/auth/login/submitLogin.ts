@@ -7,5 +7,8 @@ export const onSubmitLogin = (e: FormEvent<HTMLFormElement>) => {
   const username = formData.get("username") as string;
   const password = formData.get("password") as string;
 
-  // tinggal hit api login
+  return {
+    email : username,
+    password : password
+  }
 };

@@ -2,35 +2,33 @@ import { useEffect, useState } from "react";
 import { onSubmitRegis } from "./submitRegis";
 import { InputFormAuth } from "@/components/input";
 import { ButtonAuth } from "@/components/button/button";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store/store";
 import { LoaderCircle } from 'lucide-react';
-import { registerUser } from "@/features/auth/register/registerAPI";
-import { reset } from "@/features/auth/registerSlice";
+import { useRegisterMutation } from "@/features/auth/authApi";
 
 interface Props {
   setIsRegis : (value : boolean) => void
 }
 
 export default function FormRegis({setIsRegis} : Props) {
+  // state
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [matchPassword, setMatchPassword] = useState("");
-  const { loading, message, error, success } = useSelector((state : RootState)=> state.auth)
-  const dispatch = useDispatch<AppDispatch>()
+  const [register, {isLoading, isError, isSuccess}] = useRegisterMutation()
+
   const isDisable = () => {
     if ((username.length > 0 && password.length > 0) && (password === matchPassword)) return false;
-    if(loading) return true
+    if(isLoading) return true
     return true;
   };
+  
   useEffect(() => {
-    if(success) setIsRegis(false)
-    dispatch((reset()))
-  },[success])
+    if(isSuccess) setIsRegis(false)
+  },[isSuccess])
 
 return (
-    <form action="" className="flex flex-col gap-4" onSubmit={(e) => dispatch(registerUser(onSubmitRegis(e)))}>
+    <form action="" className="flex flex-col gap-4" onSubmit={(e) => (register(onSubmitRegis(e)))}>
       <InputFormAuth
         id={""}
         htmlFor={""}
@@ -75,7 +73,7 @@ return (
           }`}
         >
           {
-            loading?
+            isLoading?
               <LoaderCircle className="animate-spin"/>:
               <p>
                 Daftar
