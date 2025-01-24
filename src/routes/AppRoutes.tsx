@@ -4,8 +4,10 @@ import AccountCenter from "@/pages/AccountCenter/AccountCenter";
 import Home from "@/pages/Home/Home";
 import MainLayout from "@/layouts/MainLayout";
 import NewArticle from "@/pages/NewArticle/NewArticle";
+import { useProfileQuery } from "@/features/auth/authApi";
 
 export default function AppRoutes () {
+
   return(
     <Routes>
       <Route element={<MainLayout/>}>
