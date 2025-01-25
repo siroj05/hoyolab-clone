@@ -9,6 +9,7 @@ interface Props {
     id : string | null
     email : string | null
     firstName : string | null
+    isLogin : boolean
   }
   setOpen : (value : boolean) => void
 }
@@ -33,7 +34,7 @@ export default function CollapseProfile(
       </div>
       <hr className="hr-color-secondary" />
       <div className="my-2 text-left px-3">
-        {currentUser.id ? (
+        {currentUser.isLogin ? (
           <button
             onClick={handleLogout}
             className="w-full py-1 px-1 rounded-md text-sm font-bold flex gap-2 hover:text-blue-500 hover:bg-slate-600"

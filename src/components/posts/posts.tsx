@@ -23,10 +23,8 @@ export default function Posts() {
           posts.length > 0 ? "" : "h-[50vh]"
         }`}
       >
-        <div>
           <TabPosts />
           {posts.length > 0 ? 
-          
           (
             <div>
               {
@@ -64,7 +62,8 @@ export default function Posts() {
             </div>
           )
         }
-        </div>
+        {/* <div>
+        </div> */}
       </div>
 
       {/* Side card */}

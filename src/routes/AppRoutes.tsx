@@ -13,8 +13,8 @@ export default function AppRoutes () {
       <Route element={<MainLayout/>}>
         <Route path='/' element={<Navigate to={'/home'} replace/>}/>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/accountCenter' element={<AccountCenter/>}/>
         <Route element={<ProtectedRoutes/>}>
-          <Route path='/accountCenter' element={<AccountCenter/>}/>
           <Route path='/newArticle' element={<NewArticle/>}/>
         </Route>
       </Route>
