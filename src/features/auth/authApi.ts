@@ -40,6 +40,13 @@ export const AuthUser = createApi({
       invalidatesTags: ['Users']
     }),
 
+    logout : builder.mutation<void, void>({
+      query: () => ({
+        url: `logout`,
+        method : 'POST',
+      }),
+      invalidatesTags: ['Users']
+    })
     
   })
 })
@@ -47,5 +54,6 @@ export const AuthUser = createApi({
 export const {
   useLoginMutation, 
   useRegisterMutation,
+  useLogoutMutation,
   useProfileQuery
 } = AuthUser

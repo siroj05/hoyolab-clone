@@ -19,7 +19,7 @@ const store = configureStore({
   middleware : getDefaultMiddleware => 
     getDefaultMiddleware().concat(AuthUser.middleware)
 });
-
+export const { resetApiState } = AuthUser.util
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch; // Menambahkan tipe untuk dispatch
 

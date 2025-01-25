@@ -21,9 +21,15 @@ const authSlice = createSlice({
       state.email = email
       state.firstName = firstName
       state.id = id
+    },
+
+    resetCredential : (state) => {
+      state.email = initialState.email
+      state.firstName = initialState.firstName
+      state.id = initialState.id
     }
   }
 })
 
-export const {setCredential} = authSlice.actions
+export const {setCredential, resetCredential} = authSlice.actions
 export default authSlice.reducer
