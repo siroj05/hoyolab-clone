@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function SideCard() {
   return (
-    <div className="bg-primary rounded-xl p-4 w-[450px]">
+    <div className="max-[768px]:hidden bg-primary rounded-xl p-4 w-[450px]">
       <div className='flex justify-between mb-5'>
         <p className='font-bold'>Ayo Segera Posting!</p>
       </div>

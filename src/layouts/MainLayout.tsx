@@ -7,7 +7,7 @@ export default function MainLayout() {
     <>
       <div>
         <Navbar />
-          <div className="mt-20 w-[80rem] max-sm:w-[30rem] max-lg-[50rem] mx-auto">
+          <div className="max-[768px]:p-4 mt-20 w-[80rem] max-sm:w-[30rem] max-lg-[50rem] mx-auto">
             <Outlet />
           </div>
       </div>
