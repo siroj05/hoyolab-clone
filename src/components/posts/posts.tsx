@@ -1,11 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import SideCard from "./sideCard";
-import TabPosts from "./tabPosts";
-
 import { AppDispatch, RootState } from "@/store/store";
 import { useEffect } from "react";
 import { getPosts } from "@/features/posts/getPostsSlice";
-import { CircleUser } from "lucide-react";
 import { PostCard } from "./postCard";
 
 export default function Posts() {

@@ -26,7 +26,7 @@ export default function TopLoadingBar({ isLoading }: Props) {
   }, [isLoading]);
 
   return (
-    <div className="fixed inset-0 top-0 left-0 h-1 bg-blue-500 transition-all duration-300 z-100"
+    <div className="fixed inset-0 top-0 left-0 h-1 bg-blue-500 transition-all duration-300 z-50"
       style={{ width: `${progress}%` }}/>
   );
 }
