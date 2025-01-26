@@ -76,7 +76,7 @@ export default function Sidebar ({sidebarExpand, setSidebarExpand, handleLogout,
           </div>
 
         </div>
-          {!currentUser.isLogin && <div className="p-4 mb-8">
+          {currentUser.isLogin && <div className="p-4 mb-8">
             <button onClick={handleLogout} className="bg-blue-950 w-full text-xl p-2 border-white/20 border-2 rounded-full text-white/50 font-bold">Log Out</button>
           </div>}
       </div>
