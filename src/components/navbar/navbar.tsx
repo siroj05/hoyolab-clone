@@ -45,7 +45,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="border-b hr-color fixed top-0 z-30 w-full bg-primary text-white min-[769px]:px-10 px-3">
+      <div className="border-b hr-color fixed top-0 z-40 w-full bg-primary text-white min-[769px]:px-10 px-3">
         <div className="min-[769px]:flex min-[769px]:justify-between gap-2">
           {
             isDesktop ? <DekstopNavbar
