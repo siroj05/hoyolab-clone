@@ -38,12 +38,10 @@ export default function Navbar() {
     }))
   },[data, dispatch])
 
-  
-
   // media query
 
   const isDesktop= useMediaQuery({ query: '(min-width: 769px)' })
-  const isMobile = useMediaQuery({ query: '(max-width: 1023px)' })
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   return (
     <>
@@ -65,10 +63,13 @@ export default function Navbar() {
         </div>
       </div>
       <div>
-        <Sidebar
+        {isMobile && <Sidebar
           setSidebarExpand={setOpen}
           sidebarExpand={open}
-        />
+          handleLogout={handleLogout}
+          currentUser={currentUser}
+          dispatch={dispatch}
+        />}
       </div>
     </>
     
