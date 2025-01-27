@@ -10,7 +10,7 @@ export default function MobileScreenPostCard () {
   return(
     <>
       {isOpenPopup && <div className="fixed inset-0 bg-black bg-opacity-50  z-40 transition-opacity duration-300" />}
-      <div className={`fixed bottom-0 w-full rounded-t-3xl z-50 bg-[#1B1D2A] ${isOpenPopup ? 'translate-y-0 h-1/3' : 'translate-y-full'} transition-transform`}>
+      <div className={`fixed bottom-0 w-full rounded-t-3xl z-50 bg-[#1B1D2A] ${isOpenPopup ? 'translate-y-0 h-[400px]' : 'translate-y-full'} transition-transform`}>
         <div className="p-5 flex flex-col gap-3">
           <button onClick={() => dispatch(closePopup())}>
             <X className="text-white/50 mb-4"/>

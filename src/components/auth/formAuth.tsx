@@ -20,7 +20,7 @@ export default function FormAuth(){
   },[isOpenPopup])
   
   useEffect(() => {
-    dispatch(closePopup())
+    !isDesktop && dispatch(closePopup())
   },[location])
 
   return(

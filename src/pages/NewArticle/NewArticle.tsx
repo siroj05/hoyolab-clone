@@ -41,7 +41,7 @@ export default function NewArticle() {
 
   return (
     <>
-      <main className="w-[50rem] rounded-xl mx-auto bg-primary py-5 px-7">
+      <main className="w-[50rem] max-[768px]:w-full rounded-xl mx-auto bg-primary py-5 px-7">
         <h1 className="font-bold text-lg">Posting</h1>
         <hr className="hr-color-secondary my-5" />
 

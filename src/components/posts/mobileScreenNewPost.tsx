@@ -8,7 +8,7 @@ export default function MobileScreenNewPost() {
   return (
     <>
       <button onClick={() => dispatch(openPopup())} className="fixed bottom-10 right-5">
-        <img src={newPostIcon} width={80} alt="" />
+        <img src={newPostIcon} width={50} alt="" />
       </button>
     </>
   );
