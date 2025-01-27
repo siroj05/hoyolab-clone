@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store/store"
 import { IdCardIcon, MessageSquareText } from "lucide-react"
 import noData from "@/assets/noData.png"
+import Slide from "@/components/accountCenter/slide"
 export default function AccountCenter(){
   const currentUser = useSelector((state:RootState) => state.currentUser)
   return(
@@ -20,7 +21,7 @@ export default function AccountCenter(){
         <div className="px-4">
           {/* profile section */}
           <div className="flex flex-col gap-1">
-            <h1 className="font-semibold">
+            <h1 className="font-semibold max-[425px]:text-[6vw] text-[25px]">
               {currentUser.firstName}
             </h1>
             <div className="flex gap-1">
@@ -53,6 +54,9 @@ export default function AccountCenter(){
           </div>
         </div>
       </div>
+
+      {/* slide section */}
+      <Slide currentUser={currentUser}/>
 
        {/* section 2 */}
       <div className="bg-[#1B1D2A] rounded-xl">
