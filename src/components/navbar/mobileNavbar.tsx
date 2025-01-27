@@ -14,14 +14,14 @@ export default function MobileNavbar({setOpen, open}:Props) {
       <div className="flex justify-between p-1">
         <button onClick={() => setOpen(!open)}>
           {/* <CircleUser /> */}
-          <img src={Avatar} width={45} className="rounded-full" alt="" />
+          <img src={Avatar} width={35} className="rounded-full" alt="" />
         </button>
-        <Link to={"/home"} className="font-bold text-3xl my-auto text-blue-500">
+        <Link to={"/home"} className="font-bold text-xl my-auto text-blue-500">
           HoYoLAB
         </Link>
-        <div className="flex justify-between gap-7">
-          <Search className="my-auto w-7 h-7 aspect-square" />
-          <Bell className="my-auto w-7 h-7 aspect-square"/>
+        <div className="flex justify-between gap-5">
+          <Search className="my-auto w-5 h-5 aspect-square" />
+          <Bell className="my-auto w-5 h-5 aspect-square"/>
         </div>
       </div>
       

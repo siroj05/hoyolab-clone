@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import InputSearch from "./InputSearch";
 import { Bell, PencilLine } from 'lucide-react';
 import { useState, useRef, useEffect } from "react";
@@ -42,6 +42,11 @@ export default function Navbar() {
 
   const isDesktop= useMediaQuery({ query: '(min-width: 769px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
+  const location = useLocation()
+  useEffect(() => {
+    setOpen(false)
+  },[location])
 
   return (
     <>

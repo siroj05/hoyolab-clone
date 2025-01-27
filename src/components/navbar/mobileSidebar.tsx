@@ -1,10 +1,11 @@
 import { X, ChevronRight } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Avatar from "@/assets/no-profile 1.png";
 import MenuItem from "./menuItem/menuItem";
 import { currentUser } from "@/features/auth/authSlice";
 import { AppDispatch } from "@/store/store";
 import { openPopup } from "@/features/popup/popupSlice";
+import { useEffect } from "react";
 interface Props {
   setSidebarExpand :(value : boolean) => void
   sidebarExpand : boolean
@@ -13,6 +14,7 @@ interface Props {
   dispatch : AppDispatch
 }
 export default function Sidebar ({sidebarExpand, setSidebarExpand, handleLogout, currentUser, dispatch}:Props) {
+  
   return(
     <>
       {sidebarExpand && <div
@@ -37,7 +39,7 @@ export default function Sidebar ({sidebarExpand, setSidebarExpand, handleLogout,
             <div className="flex flex-col gap-6 pr-4">
               {/* account center link */}
               {currentUser.isLogin ? 
-              <button className="py-4 px-2 bg-[#343746] rounded-xl flex justify-between">
+              <Link to={'/accountCenter'} className="py-4 px-2 bg-[#343746] rounded-xl flex justify-between">
                 <div className="flex gap-2">
                   <img src={Avatar} width={45} className="rounded-full" alt="" />
                   <p className="my-auto text-lg font-bold">
@@ -45,7 +47,7 @@ export default function Sidebar ({sidebarExpand, setSidebarExpand, handleLogout,
                   </p>
                 </div>
                 <ChevronRight className="my-auto w-8 h-8"/>
-              </button>:
+              </Link>:
               <button onClick={() => {
                 setSidebarExpand(false)
                 dispatch(openPopup())
