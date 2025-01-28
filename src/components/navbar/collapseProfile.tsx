@@ -23,13 +23,15 @@ export default function CollapseProfile(
     setOpen
   }:Props
 ) {
-  
+
   const informasiku = [
-    {name : 'Halamanku', path : '/accountCenter', icon : <Ghost/>},
+    {name : 'Halamanku', path : `/accountCenter/${currentUser.id}`, icon : <Ghost/>},
     {name : 'Pengaturan Informasi', path : '#', icon : <Gift/>},
     {name : 'Pengaturan Privasi', path : '#', icon : <LockKeyhole/>},
     {name : 'Pengaturan Blocklist', path : '#', icon : <Ban/>}
   ]
+
+  // next bikin get post by user id di accountCenter
 
   return (
     <div className="absolute bg-primary w-[350px] right-0 top-12 rounded-lg">

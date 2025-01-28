@@ -21,7 +21,7 @@ export default function AppRoutes() {
         <Route element={<ProtectedRoutes />}>
           <Route path="/newArticle" element={<NewArticle currentUser={currentUser} />} />
           {isDesktop && <Route element={<AccountCenterLayout />}>
-            <Route path="/accountCenter" element={<AccountCenter />} />
+            <Route path="/accountCenter/:id" element={<AccountCenter />} />
           </Route>}
         </Route>
       </Route>
