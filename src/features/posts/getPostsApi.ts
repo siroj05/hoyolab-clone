@@ -7,6 +7,11 @@ export interface Post {
   title: string
   content: string
   userId : string
+  userInfo? : {
+    email : string,
+    firstName : string
+    _id : string
+  }
 }
 
 export const GetPostsApi = createApi({

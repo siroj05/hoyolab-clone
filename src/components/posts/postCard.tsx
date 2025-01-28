@@ -3,7 +3,7 @@ import TabPosts from "./tabPosts";
 import noPosts from "@/assets/no_post.png";
 import { Post } from "@/features/posts/getPostsApi";
 import LoadingIcon from "@/assets/loading.gif"
-
+import NoProfile from "@/assets/no-profile 1.png"
 interface Props {
   posts? : Post[]
   loading : boolean
@@ -30,14 +30,15 @@ export const PostCard = ({posts, loading, error, success}:Props) => {
           (
             <div>
               {
-                posts.map((item:any, i:number) =>(
+                posts.map((item:Post, i:number) =>(
                   <div key={item._id} className="max-[768px]:bg-[#1B1D2A] max-[768px]:rounded-3xl max-[768px]:mb-3">
                     <div className="p-5">
                       <div  className="mb-10">
                         <div className="flex flex-col gap-4">
                           <div className="flex gap-2">
-                            <CircleUser className="w-10 h-10"/> 
-                            <p className="my-auto">Users1233</p> 
+                            {/* <CircleUser className="w-10 h-10"/> */}
+                            <img src={NoProfile} width={50} className="rounded-full" alt="" /> 
+                            <p className="my-auto font-bold">{item.userInfo?.firstName}</p> 
                           </div>
                           <h1 className="font-bold text-lg">{item.title}</h1>
                           <h1 className="">{item.content}</h1>
