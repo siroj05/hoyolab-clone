@@ -30,7 +30,7 @@ export default function AppRoutes() {
       {isMobile && (
         <Route element={<AccountCenterLayout />}>
           <Route element={<ProtectedRoutes />}>
-            <Route path="/accountCenter" element={<AccountCenter />} />
+            <Route path="/accountCenter/:id" element={<AccountCenter />} />
           </Route>
         </Route>
       )}

@@ -41,7 +41,7 @@ export const PostCard = ({posts, loading, error, success}:Props) => {
                             <p className="my-auto font-bold">{item.userInfo?.firstName}</p> 
                           </div>
                           <h1 className="font-bold text-lg">{item.title}</h1>
-                          <h1 className="">{item.content}</h1>
+                          <div dangerouslySetInnerHTML={{ __html: item.content }}/>
                           <img src={item.cover} alt="" width={300} className="object-contain" />
                         </div>
                         

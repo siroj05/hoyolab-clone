@@ -39,7 +39,7 @@ export default function Sidebar ({sidebarExpand, setSidebarExpand, handleLogout,
             <div className="flex flex-col gap-6 pr-4">
               {/* account center link */}
               {currentUser.isLogin ? 
-              <Link to={'/accountCenter'} className="py-4 px-2 bg-[#343746] rounded-xl flex justify-between">
+              <Link to={`/accountCenter/${currentUser.id}`} className="py-4 px-2 bg-[#343746] rounded-xl flex justify-between">
                 <div className="flex gap-2">
                   <img src={Avatar} width={45} className="rounded-full" alt="" />
                   <p className="my-auto text-lg font-bold">
