@@ -7,26 +7,30 @@ import NewArticle from "@/pages/NewArticle/NewArticle";
 import AccountCenterLayout from "@/layouts/AccountCenterLayout";
 import { useMediaQuery } from "react-responsive";
 
-export default function AppRoutes () {
-  const isDesktop= useMediaQuery({ query: '(min-width: 769px)' })
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-  return(
+export default function AppRoutes() {
+  const isDesktop = useMediaQuery({ query: "(min-width: 769px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  return (
     <Routes>
-      <Route element={<MainLayout/>}>
-        <Route path='/' element={<Navigate to={'/home'} replace/>}/>
-        <Route path='/home' element={<Home/>}/>
-        <Route element={<ProtectedRoutes/>}>
-          <Route path='/newArticle' element={<NewArticle/>}/>
-          {isDesktop && <Route path='/accountCenter' element={<AccountCenter/>}/>}
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Navigate to={"/home"} replace />} />
+        <Route path="/home" element={<Home />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/newArticle" element={<NewArticle />} />
+          {isDesktop && <Route element={<AccountCenterLayout />}>
+            <Route path="/accountCenter" element={<AccountCenter />} />
+          </Route>}
         </Route>
       </Route>
 
-      {/* mobile */}
-      {isMobile && <Route element={<AccountCenterLayout/>}>
-        <Route element={<ProtectedRoutes/>}>
-          <Route path='/accountCenter' element={<AccountCenter/>}/>
+      {/* mobile accounCenter */}
+      {isMobile && (
+        <Route element={<AccountCenterLayout />}>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/accountCenter" element={<AccountCenter />} />
+          </Route>
         </Route>
-      </Route>}
+      )}
     </Routes>
-  )
+  );
 }

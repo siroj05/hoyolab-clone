@@ -11,6 +11,7 @@ import { useMediaQuery } from 'react-responsive'
 import DekstopNavbar from "./desktopNavbar";
 import MobileNavbar from "./mobileNavbar";
 import Sidebar from "./mobileSidebar";
+import scrollYDetect from "@/config/utils/scrollY";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -42,15 +43,17 @@ export default function Navbar() {
 
   const isDesktop= useMediaQuery({ query: '(min-width: 769px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-
   const location = useLocation()
+
   useEffect(() => {
     setOpen(false)
   },[location])
 
+  const isScroll = scrollYDetect()
+
   return (
     <>
-      <div className="border-b hr-color fixed top-0 z-40 w-full bg-primary text-white min-[769px]:px-10 px-3">
+      <div className={` hr-color fixed top-0 z-40 w-full ${location.pathname == '/accountCenter' ? (isScroll ? 'bg-primary border-b duration-150' : '') : 'bg-primary border-b'} text-white min-[769px]:px-10 px-3`}>
         <div className="min-[769px]:flex min-[769px]:justify-between gap-2">
           {
             isDesktop ? <DekstopNavbar
