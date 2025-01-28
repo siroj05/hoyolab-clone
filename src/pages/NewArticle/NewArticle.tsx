@@ -3,27 +3,23 @@ import { Input } from "@/components/input";
 import InputImage from "@/components/newArticle/inputImage";
 import PreviewImage from "@/components/newArticle/previewImage";
 import MyEditor from "@/components/wysiwyg/simple-wysiwyg/editor";
-import { AppDispatch, RootState } from "@/store/store";
 import { LoaderCircle } from 'lucide-react';
 import { FormEvent, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "../../features/newArticle/postSlice";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { currentUser } from "@/features/auth/authSlice";
+import { useNewArticeMutation } from "@/features/posts/getPostsApi";
 
 interface Props {
   currentUser : currentUser
 }
 
 export default function NewArticle({currentUser}:Props) {
-  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const { loading, error } = useSelector((state : RootState) => state.posts)
   const [selectedFile, setSelectedFile] = useState<string>();
   const [previewFile, setPreviewFile] = useState<string>();
   const [title, setTitle] = useState('');
   const [html, setHtml] = useState('');
-  
+  const [newArticle, {isLoading, isError, isSuccess}] = useNewArticeMutation()
 
   const onSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -38,11 +34,10 @@ export default function NewArticle({currentUser}:Props) {
       userId : currentUser.id!,
       content : html
     }
-    const res = await dispatch(createPost(request))
-    if (res.payload.success) {
-      navigate('/')
-    }
+    newArticle(request)
   }
+  
+  isSuccess && navigate('/')
 
   return (
     <>
@@ -87,9 +82,9 @@ export default function NewArticle({currentUser}:Props) {
             <Button>
               Preview
             </Button>
-            <Button disable={loading} type="submit">
+            <Button disable={isLoading} type="submit">
               {
-                loading ? <p className="flex gap-2">
+                isLoading ? <p className="flex gap-2">
                   Loading <LoaderCircle className="animate-spin"/>
                 </p> :
                 <p>Posting</p>

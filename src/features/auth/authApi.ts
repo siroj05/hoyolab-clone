@@ -1,8 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { setCredential } from './authSlice'
 
 // next bikin env
-const baseUrl = 'http://localhost:3000/api/'
+export const baseUrl = 'http://localhost:3000/api/'
 
 interface User {
   email : string,

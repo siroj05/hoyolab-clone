@@ -1,20 +1,32 @@
 import { CircleUser } from "lucide-react";
 import TabPosts from "./tabPosts";
 import noPosts from "@/assets/no_post.png";
+import { Post } from "@/features/posts/getPostsApi";
+import LoadingIcon from "@/assets/loading.gif"
 
 interface Props {
-  posts : any[]
+  posts? : Post[]
+  loading : boolean
+  error : boolean
+  success : boolean
 }
 
-export const PostCard = ({posts}:Props) => {
+export const PostCard = ({posts, loading, error, success}:Props) => {
+
+  if(loading) return (
+    <div className="w-full bg-[#1B1D2A] rounded-xl flex items-center justify-center h-[500px]">
+      <img src={LoadingIcon} alt="" />
+    </div>
+  )
+
   return (
     <div
         className={`w-full min-[769px]:bg-[#1B1D2A] min-[769px]:rounded-xl ${
-          posts.length > 0 ? "" : "h-[50vh]"
+          posts && posts?.length > 0 ? "" : "h-[50vh]"
         }`}
       >
           <TabPosts />
-          {posts.length > 0 ? 
+          {posts && posts.length > 0 ? 
           (
             <div>
               {
@@ -29,7 +41,7 @@ export const PostCard = ({posts}:Props) => {
                           </div>
                           <h1 className="font-bold text-lg">{item.title}</h1>
                           <h1 className="">{item.content}</h1>
-                          <img src={item.cover} alt="" />
+                          <img src={item.cover} alt="" width={300} className="object-contain" />
                         </div>
                         
                       </div>
