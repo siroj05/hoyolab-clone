@@ -9,8 +9,13 @@ import { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../features/newArticle/postSlice";
 import { redirect, useNavigate } from "react-router-dom";
+import { currentUser } from "@/features/auth/authSlice";
 
-export default function NewArticle() {
+interface Props {
+  currentUser : currentUser
+}
+
+export default function NewArticle({currentUser}:Props) {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const { loading, error } = useSelector((state : RootState) => state.posts)
@@ -30,7 +35,7 @@ export default function NewArticle() {
     let request = {
       cover : image,
       title : title,
-      userId : "1",
+      userId : currentUser.id!,
       content : html
     }
     const res = await dispatch(createPost(request))
@@ -41,7 +46,7 @@ export default function NewArticle() {
 
   return (
     <>
-      <main className="w-[50rem] max-[768px]:w-full rounded-xl mx-auto bg-primary py-5 px-7">
+      <main className="w-[50rem] max-[768px]:w-full rounded-xl mx-auto md:bg-[#1B1D2A] md:py-5 md:px-5">
         <h1 className="font-bold text-lg">Posting</h1>
         <hr className="hr-color-secondary my-5" />
 
@@ -78,7 +83,7 @@ export default function NewArticle() {
               setHtml={setHtml}
             />
           </div>
-          <div className="my-10 flex gap-6 justify-center">
+          <div className="my-10 flex md:gap-6 gap-1 justify-center">
             <Button>
               Preview
             </Button>

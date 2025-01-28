@@ -23,7 +23,7 @@ export default function UserInfo() {
       />
 
       {/* section 2 */}
-      <div className="w-[80rem] mx-auto">
+      <div className="lg:w-5/6 xl:w-4/6 mx-auto">
         {/* avatar */}
         <div className="absolute -translate-y-3/4 mx-1">
           <div className="flex">
@@ -59,7 +59,7 @@ export default function UserInfo() {
       {/* fix this section */}
       {/* info user */}
       <div className="p-3 bg-[#1B1D2A] h-[55px] sticky top-12 z-50 border-b-[1px] hr-color">
-        <div className="w-[80rem] mx-auto">
+        <div className="lg:w-5/6 xl:w-4/6 mx-auto">
           <div className="flex gap-4">
             {/* besar -my-[80px] kecil -my-[10px]*/}
             <div className={`${isScroll ? '-my-[10px]' : '-my-[80px]'} duration-200`}>
@@ -72,7 +72,7 @@ export default function UserInfo() {
                   <div key={item.name}>
                     <span>{item.count}</span> <span className="text-white/70">{item.name}</span>
                   </div>
-                  {i < 3 && <span className="text-white/25">/</span>}
+                  {i < 3 && <span className="text-white/35">/</span>}
                 </>
               ))
             }

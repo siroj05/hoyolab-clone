@@ -18,12 +18,8 @@ export default function AccountCenterLayout() {
           </p>
         </button>
       </nav>}
-
-      {/* desktop */}
-      {
-        isDesktop && <UserInfo/>
-      }
-      <main className="relative max-[768px]:p-4 mt-10 w-[80rem] max-[768px]:w-full max-lg-[50rem] mx-auto">
+      {isDesktop && <UserInfo/>}
+      <main className="relative lg:w-5/6 xl:w-4/6 p-4 mt-10 sm:w-full mx-auto">
         <Outlet />
       </main>
     

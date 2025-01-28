@@ -6,17 +6,20 @@ import MainLayout from "@/layouts/MainLayout";
 import NewArticle from "@/pages/NewArticle/NewArticle";
 import AccountCenterLayout from "@/layouts/AccountCenterLayout";
 import { useMediaQuery } from "react-responsive";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default function AppRoutes() {
   const isDesktop = useMediaQuery({ query: "(min-width: 769px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const currentUser = useSelector((state : RootState) => state.currentUser)
   return (
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<Navigate to={"/home"} replace />} />
         <Route path="/home" element={<Home />} />
         <Route element={<ProtectedRoutes />}>
-          <Route path="/newArticle" element={<NewArticle />} />
+          <Route path="/newArticle" element={<NewArticle currentUser={currentUser} />} />
           {isDesktop && <Route element={<AccountCenterLayout />}>
             <Route path="/accountCenter" element={<AccountCenter />} />
           </Route>}
