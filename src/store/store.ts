@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import isPopupOpenReducer from '../features/popup/popupSlice'
 import authReducer from '../features/auth/authSlice'
 import { AuthUser } from '@/features/auth/authApi';
-import { GetPostsApi } from '@/features/posts/getPostsApi';
+import { PostsApi } from '@/features/posts/postsApi';
 
 const store = configureStore({
   reducer: {
@@ -10,14 +10,14 @@ const store = configureStore({
     currentUser : authReducer,
     // reducer api
     [AuthUser.reducerPath] : AuthUser.reducer,
-    [GetPostsApi.reducerPath] : GetPostsApi.reducer
+    [PostsApi.reducerPath] : PostsApi.reducer
   },
 
   // middleware api
   middleware : getDefaultMiddleware => 
     getDefaultMiddleware()
     .concat(AuthUser.middleware)
-    .concat(GetPostsApi.middleware)
+    .concat(PostsApi.middleware)
 });
 export const { resetApiState } = AuthUser.util
 export type RootState = ReturnType<typeof store.getState>;

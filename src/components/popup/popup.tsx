@@ -18,7 +18,7 @@ export const PopupDialog = ({children, isOpen=true}:Props) => {
     }
   },[isOpen])
   return(
-    isOpen && <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
+    isOpen && <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
       {children}
     </div>
   )

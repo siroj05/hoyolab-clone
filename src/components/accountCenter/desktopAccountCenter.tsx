@@ -5,13 +5,24 @@ import { PostCard } from "../posts/postCard";
 import SideCard from "../posts/sideCard";
 import { AccountCenterSideCard, AccountCenterSideCardPersonalData } from "./accountCenterSideCard";
 import UserInfo from "./userInfo";
+import { Post } from "@/features/posts/postsApi";
 
 interface Props {
   currentUser: currentUser;
+  posts? : Post[] | undefined
+  loading : boolean
+  error : boolean
+  success : boolean
 }
 
-export default function DesktopAccountCenter({ currentUser }: Props) {
-  const posts : any = []
+export default function DesktopAccountCenter({ 
+  currentUser,
+  posts,
+  loading,
+  error,
+  success 
+}: Props) {
+
   return (
     <>
       
@@ -19,6 +30,9 @@ export default function DesktopAccountCenter({ currentUser }: Props) {
         <div className="flex flex-row gap-5 items-start">
           <PostCard
             posts={posts}
+            loading={loading}
+            error={error}
+            success={success}
           />
           <div className="flex flex-col w-[430px] gap-4">
             <AccountCenterSideCard/>

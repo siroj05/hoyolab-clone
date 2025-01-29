@@ -5,7 +5,7 @@ import { PostCard } from "./postCard";
 import { useMediaQuery } from "react-responsive";
 import MobileScreenNewPost from "./mobileScreenNewPost";
 import MobileScreenPostCard from "./mobileScreenPostCard";
-import { usePostsQuery } from "@/features/posts/getPostsApi";
+import { usePostsQuery } from "@/features/posts/postsApi";
 export default function Posts() {
   const {data:posts, isLoading, isError, isSuccess} = usePostsQuery()
   const currentUser = useSelector((state : RootState) => state.currentUser)

@@ -9,18 +9,22 @@ interface Props {
   className?: string;
   label? : string
   link? : string
+  onClick? : () => void
 }
 
 export const Button = ({
   children,
   type = "button",
   disable = false,
+  className = '',
+  onClick
 }: Props) => {
   return (
     <button
       disabled={disable}
       type={type}
-      className="bg-blue-800/50 py-2 px-20 max-[768px]:px-10 rounded-full font-bold text-blue-500/90 hover:text-white hover:bg-blue-600"
+      onClick={onClick}
+      className={`${className} bg-blue-800/50 py-2 px-20 max-[768px]:px-10 rounded-full font-bold text-blue-500/90 hover:text-white hover:bg-blue-600`}
     >
       {children}
     </button>

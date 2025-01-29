@@ -7,7 +7,7 @@ import { LoaderCircle } from 'lucide-react';
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { currentUser } from "@/features/auth/authSlice";
-import { useNewArticeMutation } from "@/features/posts/getPostsApi";
+import { useNewArticeMutation } from "@/features/posts/postsApi";
 
 interface Props {
   currentUser : currentUser

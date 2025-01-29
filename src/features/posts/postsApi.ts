@@ -16,11 +16,28 @@ export interface Post {
   }
 }
 
-export const GetPostsApi = createApi({
+export const PostsApi = createApi({
   reducerPath: "post",
   baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes : ['Post'],
   endpoints: (builder) => ({
+
+    deletedPost : builder.mutation({
+      query : (postId) => ({
+        url : `deletePost/${postId}`,
+        method : 'DELETE'
+      }),
+      invalidatesTags : ['Post']
+    }),
+
+    getPostByUserId : builder.query<Post[], string>({
+      query: (userId) => ({
+        url : `post/${userId}`,
+        method : 'GET'
+      }),
+      providesTags: ['Post']
+    }),
+
     posts: builder.query<Post[], void>({
       query: () => `posts`,
       providesTags : ['Post']
@@ -37,4 +54,9 @@ export const GetPostsApi = createApi({
   }),
 });
 
-export const { usePostsQuery, useNewArticeMutation } = GetPostsApi;
+export const { 
+  useDeletedPostMutation,
+  useGetPostByUserIdQuery,
+  usePostsQuery, 
+  useNewArticeMutation 
+} = PostsApi;

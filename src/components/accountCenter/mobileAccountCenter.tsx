@@ -1,24 +1,47 @@
-import { IdCardIcon, MessageSquareText } from "lucide-react"
-import noData from "@/assets/noData.png"
-import Slide from "@/components/accountCenter/slide"
-import Sampul from "@/assets/sampul.webp"
-import Avatar from "@/assets/no-profile 1.png"
-import { currentUser } from "@/features/auth/authSlice"
-
+import { IdCardIcon, MessageSquareText } from "lucide-react";
+import noData from "@/assets/noData.png";
+import Slide from "@/components/accountCenter/slide";
+import Sampul from "@/assets/sampul.webp";
+import Avatar from "@/assets/no-profile 1.png";
+import { currentUser } from "@/features/auth/authSlice";
+import { PostCard } from "../posts/postCard";
+import { Post } from "@/features/posts/postsApi";
+import LoadingIcon from "@/assets/loading.gif";
 interface Props {
-  currentUser : currentUser
+  currentUser: currentUser;
+  posts?: Post[] | undefined;
+  loading: boolean;
+  error: boolean;
+  success: boolean;
 }
 
-export default function MobileAccountCenter({currentUser}:Props){
-  return(
+export default function MobileAccountCenter({
+  currentUser,
+  posts,
+  loading,
+  success,
+  error,
+}: Props) {
+  return (
     <main className="flex flex-col gap-2">
       <div className="bg-[#1B1D2A] rounded-xl">
         <div className="relative h-[11vh]">
-          <img src={Sampul} alt="" className="rounded-t-xl h-[11vh] w-full object-cover object-top" />
-          <img src={Avatar} width={75} className="rounded-full absolute bottom-0 left-4 transform translate-y-1/2" alt="" />
+          <img
+            src={Sampul}
+            alt=""
+            className="rounded-t-xl h-[11vh] w-full object-cover object-top"
+          />
+          <img
+            src={Avatar}
+            width={75}
+            className="rounded-full absolute bottom-0 left-4 transform translate-y-1/2"
+            alt=""
+          />
         </div>
         <div className="w-full flex justify-end my-2">
-          <button className="mx-3 bg-[#1A224D] text-sm text-[#3F5CDD] font-semibold rounded-full py-2 px-6">Ubah</button>
+          <button className="mx-3 bg-[#1A224D] text-sm text-[#3F5CDD] font-semibold rounded-full py-2 px-6">
+            Ubah
+          </button>
         </div>
         <div className="px-4">
           {/* profile section */}
@@ -27,12 +50,14 @@ export default function MobileAccountCenter({currentUser}:Props){
               {currentUser.firstName}
             </h1>
             <div className="flex gap-1">
-              <IdCardIcon className="w-4 h-4 bg-violet-900"/>
+              <IdCardIcon className="w-4 h-4 bg-violet-900" />
               <p className="text-[9.5px]">ID Akun: {currentUser.id}</p>
             </div>
             <div className="flex gap-1">
-              <MessageSquareText className="w-4 h-4"/>
-              <p className="text-[9.5px]">Tanda tangan ini diperlihatkan untuk semua orang~</p>
+              <MessageSquareText className="w-4 h-4" />
+              <p className="text-[9.5px]">
+                Tanda tangan ini diperlihatkan untuk semua orang~
+              </p>
             </div>
             {/* user info item */}
             <div className="flex justify-between mx-4 min-[768px]:mx-16 text-[10px] my-4">
@@ -58,9 +83,9 @@ export default function MobileAccountCenter({currentUser}:Props){
       </div>
 
       {/* slide section */}
-      <Slide currentUser={currentUser}/>
+      <Slide currentUser={currentUser} />
 
-       {/* section 2 */}
+      {/* section 2 */}
       <div className="bg-[#1B1D2A] rounded-xl">
         <div className="flex gap-5 px-3 py-4 text-xs font-semibold text-white/60">
           <h1 className="text-white">Postingan</h1>
@@ -71,13 +96,36 @@ export default function MobileAccountCenter({currentUser}:Props){
       </div>
 
       {/* Section posts */}
-      <div className="w-full h-[40vh] flex items-center justify-center">
-        <div className="flex flex-col">
-          <img src={noData} alt="No data available" className="max-w-[150px] brightness-50" />
-          <h1 className="text-xs text-center text-white/65">Kosong sama sekali...</h1>
-        </div>
-      </div>
 
+      {!loading && posts && posts?.length > 0 ? (
+        <div className="flex flex-row gap-5 items-start">
+          <PostCard
+            posts={posts}
+            loading={loading}
+            error={error}
+            success={success}
+          />
+        </div>
+      ) : loading ? (
+        loading && (
+          <div className="w-full bg-[#1B1D2A] rounded-xl flex items-center justify-center h-[500px]">
+            <img src={LoadingIcon} alt="" />
+          </div>
+        )
+      ) : (
+        <div className="w-full h-[40vh] flex items-center justify-center">
+          <div className="flex flex-col">
+            <img
+              src={noData}
+              alt="No data available"
+              className="max-w-[150px] brightness-50"
+            />
+            <h1 className="text-xs text-center text-white/65">
+              Kosong sama sekali...
+            </h1>
+          </div>
+        </div>
+      )}
     </main>
-  )
+  );
 }
