@@ -30,11 +30,12 @@ export function PopupPreview({
               <X className="w-5 h-5"/>
             </button>
           </div>
-          <div className="px-7">
+          <div className="px-7 flex justify-center">
             <img
               src={previewFile}
               alt="Preview"
               className="mt-2 max-w-full"
+              width={400}
             />
           </div>
           <div className="my-5 text-center">

@@ -4,6 +4,7 @@ import noPosts from "@/assets/no_post.png";
 import { Post } from "@/features/posts/getPostsApi";
 import LoadingIcon from "@/assets/loading.gif"
 import NoProfile from "@/assets/no-profile 1.png"
+import { formatDate } from "@/config/utils/formatDate";
 interface Props {
   posts? : Post[]
   loading : boolean
@@ -38,7 +39,10 @@ export const PostCard = ({posts, loading, error, success}:Props) => {
                           <div className="flex gap-2">
                             {/* <CircleUser className="w-10 h-10"/> */}
                             <img src={NoProfile} width={50} className="rounded-full" alt="" /> 
-                            <p className="my-auto font-bold">{item.userInfo?.firstName}</p> 
+                            <div className="flex flex-col">
+                              <p className="my-auto font-bold">{item.userInfo?.firstName}</p>
+                              <p className="text-xs">{item.createAt}</p> 
+                            </div>
                           </div>
                           <h1 className="font-bold text-lg">{item.title}</h1>
                           <div dangerouslySetInnerHTML={{ __html: item.content }}/>

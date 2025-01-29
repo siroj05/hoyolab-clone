@@ -27,6 +27,7 @@ export default function PreviewImage({
             src={selectedFile}
             alt="Preview"
             className="mt-2 max-w-full rounded-md"
+            width={300}
           />
           <button className="absolute right-4 bottom-4 ">
             <div className="flex gap-3">

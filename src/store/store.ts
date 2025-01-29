@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postReducer from '../features/newArticle/postSlice';
 import isPopupOpenReducer from '../features/popup/popupSlice'
 import authReducer from '../features/auth/authSlice'
 import { AuthUser } from '@/features/auth/authApi';
@@ -7,7 +6,6 @@ import { GetPostsApi } from '@/features/posts/getPostsApi';
 
 const store = configureStore({
   reducer: {
-    posts: postReducer,
     isPopupOpen : isPopupOpenReducer,
     currentUser : authReducer,
     // reducer api

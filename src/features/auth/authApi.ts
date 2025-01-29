@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react'
 
 // next bikin env
 export const baseUrl = 'http://localhost:3000/api/'
@@ -6,6 +6,10 @@ export const baseUrl = 'http://localhost:3000/api/'
 interface User {
   email : string,
   password : string
+}
+
+interface Errors {
+  error : {status : number | string}
 }
 
 export const AuthUser = createApi({
@@ -19,7 +23,20 @@ export const AuthUser = createApi({
 
     profile : builder.query<any, any>({
       query:() => `profile`,
-      providesTags: ['Users']
+      providesTags: ['Users'],
+      async onQueryStarted(_, {queryFulfilled}){
+        try {
+          const { data } = await queryFulfilled
+          localStorage.setItem('auth', JSON.stringify(data.user))
+          window.dispatchEvent(new Event("storage"));
+        } catch (error) {
+          // console.error('Failed to fetch', error)
+          if((error as Errors).error.status === 401){
+            localStorage.removeItem('auth')
+            window.dispatchEvent(new Event("storage"));
+          }
+        }
+      }
     }),
 
     register : builder.mutation<User, User>({

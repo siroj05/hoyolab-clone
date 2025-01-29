@@ -4,7 +4,7 @@ import InputImage from "@/components/newArticle/inputImage";
 import PreviewImage from "@/components/newArticle/previewImage";
 import MyEditor from "@/components/wysiwyg/simple-wysiwyg/editor";
 import { LoaderCircle } from 'lucide-react';
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { currentUser } from "@/features/auth/authSlice";
 import { useNewArticeMutation } from "@/features/posts/getPostsApi";
@@ -20,6 +20,8 @@ export default function NewArticle({currentUser}:Props) {
   const [title, setTitle] = useState('');
   const [html, setHtml] = useState('');
   const [newArticle, {isLoading, isError, isSuccess}] = useNewArticeMutation()
+  const date = new Date().toLocaleDateString()
+  const time = new Date().toLocaleTimeString()
 
   const onSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -32,7 +34,9 @@ export default function NewArticle({currentUser}:Props) {
       cover : image,
       title : title,
       userId : currentUser.id!,
-      content : html
+      content : html,
+      createAt : date,
+      time : time
     }
     newArticle(request)
   }
