@@ -104,6 +104,7 @@ export default function MobileAccountCenter({
             loading={loading}
             error={error}
             success={success}
+            currentUser={currentUser}
           />
         </div>
       ) : loading ? (
