@@ -5,15 +5,17 @@ import LoadingIcon from "@/assets/loading.gif"
 import NoProfile from "@/assets/no-profile 1.png"
 import { formatDate } from "@/config/utils/formatDate";
 import PostAction from "./postAction";
+import { currentUser } from "@/features/auth/authSlice";
 
 interface Props {
   posts? : Post[]
   loading : boolean
   error : boolean
   success : boolean
+  currentUser : currentUser
 }
 
-export const PostCard = ({posts, loading, error, success}:Props) => {
+export const PostCard = ({posts, loading, error, success, currentUser}:Props) => {
 
   if(loading) return (
     <div className="w-full bg-[#1B1D2A] rounded-xl flex items-center justify-center h-[500px]">
@@ -46,7 +48,10 @@ export const PostCard = ({posts, loading, error, success}:Props) => {
                                 <p className="text-xs">{item.createAt}</p> 
                               </div>
                             </div>
-                            <PostAction _id={item._id}/>
+                            <PostAction 
+                              _id={item._id}
+                              currentUser={currentUser} 
+                              userId={item.userId}                            />
                           </div>
                           <h1 className="font-bold text-lg">{item.title}</h1>
                           <div dangerouslySetInnerHTML={{ __html: item.content }}/>

@@ -53,7 +53,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className={` hr-color fixed top-0 z-40 w-full ${location.pathname == '/accountCenter' ? (isScroll ? 'bg-primary border-b duration-150' : '') : 'bg-primary border-b'} text-white min-[769px]:px-10 px-3`}>
+      <div className={` hr-color fixed top-0 z-40 w-full ${location.pathname.includes('/accountCenter') ? (isScroll ? 'bg-primary border-b duration-150' : '') : 'bg-primary border-b'} text-white min-[769px]:px-10 px-3`}>
         <div className="min-[769px]:flex min-[769px]:justify-between gap-2">
           {
             isDesktop ? <DekstopNavbar

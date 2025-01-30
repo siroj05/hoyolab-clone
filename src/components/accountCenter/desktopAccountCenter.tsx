@@ -1,10 +1,7 @@
 
 import { currentUser } from "@/features/auth/authSlice";
-
 import { PostCard } from "../posts/postCard";
-import SideCard from "../posts/sideCard";
 import { AccountCenterSideCard, AccountCenterSideCardPersonalData } from "./accountCenterSideCard";
-import UserInfo from "./userInfo";
 import { Post } from "@/features/posts/postsApi";
 
 interface Props {
@@ -33,15 +30,13 @@ export default function DesktopAccountCenter({
             loading={loading}
             error={error}
             success={success}
+            currentUser={currentUser}
           />
           <div className="flex flex-col w-[430px] gap-4">
             <AccountCenterSideCard/>
             <AccountCenterSideCardPersonalData currentUser={currentUser}/>
           </div>
         </div>
-      {/* <div className="mt-10 lg:w-5/6 xl:w-4/6 mx-auto">
-      </div> */}
-         
     </>
   );
 }

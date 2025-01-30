@@ -11,7 +11,7 @@ export default function Posts() {
   const currentUser = useSelector((state : RootState) => state.currentUser)
   const isDesktop= useMediaQuery({ query: '(min-width: 769px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-  // console.log(posts)
+
   return (
     <main>
       <div className="flex flex-row gap-5 items-start">
@@ -21,6 +21,7 @@ export default function Posts() {
           error={isError}
           success={isSuccess}
           posts={posts}
+          currentUser={currentUser}
         />
 
         {/* Side card */}
