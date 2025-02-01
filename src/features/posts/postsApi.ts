@@ -7,8 +7,7 @@ export interface Post {
   title: string
   content: string
   userId : string
-  createAt : string
-  time : string
+  createdAt : string
   userInfo? : {
     email : string,
     firstName : string

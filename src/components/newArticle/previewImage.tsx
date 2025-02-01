@@ -29,7 +29,7 @@ export default function PreviewImage({
             className="mt-2 max-w-full rounded-md"
             width={300}
           />
-          <button className="absolute right-4 bottom-4 ">
+          <button className="absolute right-4 bottom-4 " type="button">
             <div className="flex gap-3">
               <div className="bg-black hover:bg-blue-600 p-2 rounded-full">
                 <label htmlFor="image">

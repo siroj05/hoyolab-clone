@@ -3,12 +3,14 @@ import isPopupOpenReducer from '../features/popup/popupSlice'
 import authReducer from '../features/auth/authSlice'
 import { AuthUser } from '@/features/auth/authApi';
 import { PostsApi } from '@/features/posts/postsApi';
+import postActionReducer from '@/features/posts/postSlice'
 
 const store = configureStore({
   reducer: {
     isPopupOpen : isPopupOpenReducer,
     currentUser : authReducer,
     // reducer api
+    postAction : postActionReducer,
     [AuthUser.reducerPath] : AuthUser.reducer,
     [PostsApi.reducerPath] : PostsApi.reducer
   },

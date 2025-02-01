@@ -22,6 +22,7 @@ export default function AppRoutes() {
           <Route path="/newArticle" element={<NewArticle currentUser={currentUser} />} />
           {isDesktop && <Route element={<AccountCenterLayout />}>
             <Route path="/accountCenter/:id" element={<AccountCenter />} />
+            {/* <Route path="/article/:postId/userId" element={<NewArticle currentUser={currentUser} />} /> */}
           </Route>}
         </Route>
       </Route>
