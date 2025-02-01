@@ -4,12 +4,17 @@ import Avatar from "@/assets/no-profile 1.png";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 import scrollYDetect from "@/config/utils/scrollY";
+import { Post } from "@/features/posts/postsApi";
 
-export default function UserInfo() {
+interface Props {
+  posts : Post[] | undefined
+}
+
+export default function UserInfo({posts}:Props) {
   const currentUser = useSelector((state: RootState) => state.currentUser);
   const isScroll = scrollYDetect()
   const userInfo = [
-    {name : "Postingan", count : 0},
+    {name : "Postingan", count : posts?.length?? 0},
     {name : "Ikuti", count : 0},
     {name : "Pengikut", count : 0},
     {name : "Suka", count : 0}

@@ -18,8 +18,8 @@ export default function AccountCenterLayout() {
           </p>
         </button>
       </nav>}
-      {isDesktop && <UserInfo/>}
-      <main className="relative lg:w-5/6 xl:w-4/6 p-4 mt-10 sm:w-full mx-auto">
+      
+      <main className={`${isMobile && "relative lg:w-5/6 xl:w-4/6 p-4 mt-10 sm:w-full mx-auto"}`}>
         <Outlet />
       </main>
     
