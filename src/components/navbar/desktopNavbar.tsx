@@ -2,10 +2,10 @@ import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import InputSearch from "./InputSearch";
 import { Bell, PencilLine } from "lucide-react";
-import CollapseProfile from "./collapseProfile";
-import Avatar from "@/assets/no-profile 1.png";
+import { CollapseProfile, Profile } from "./collapseNavbar/collapseProfile";
 import { AppDispatch } from "@/store/store";
 import { currentUser } from "@/features/auth/authSlice";
+import { NewArtivleNav } from "./collapseNavbar/collapseNewArticle";
 
 interface Props {
   setOpen: (value: boolean) => void;
@@ -22,22 +22,7 @@ export default function DekstopNavbar({
   dispatch,
   currentUser,
 }: Props) {
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
+  
 
   return (
     <>
@@ -56,25 +41,15 @@ export default function DekstopNavbar({
         <InputSearch />
       </div>
       <div className="my-auto flex gap-3">
-        <PencilLine className="w-20 my-auto" />
+        <NewArtivleNav/>
         <Bell className="w-20 my-auto" />
-        <div className="relative" ref={dropdownRef}>
-          {/* avatar */}
-          <button onClick={() => setOpen(!open)}>
-            {/* <CircleUser /> */}
-            <img src={Avatar} width={55} className="rounded-full" alt="" />
-          </button>
-
-          {/* collapse profile */}
-          {open && (
-            <CollapseProfile
-              handleLogout={handleLogout}
-              dispatch={dispatch}
-              currentUser={currentUser}
-              setOpen={setOpen}
-            />
-          )}
-        </div>
+        <Profile
+          open={open}
+          setOpen={setOpen}
+          handleLogout={handleLogout}
+          dispatch={dispatch}
+          currentUser={currentUser}
+        />
       </div>
     </>
   );
