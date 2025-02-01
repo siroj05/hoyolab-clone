@@ -5,33 +5,57 @@ import PreviewImage from "@/components/newArticle/previewImage";
 import MyEditor from "@/components/wysiwyg/simple-wysiwyg/editor";
 import { LoaderCircle } from 'lucide-react';
 import { FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { currentUser } from "@/features/auth/authSlice";
-import { useNewArticeMutation } from "@/features/posts/postsApi";
+import { useGetDetailPostQuery, useNewArticeMutation } from "@/features/posts/postsApi";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { clearPost, setPost } from "@/features/posts/postSlice";
+import LoadingIcon from "@/assets/loading.gif"
 
 interface Props {
   currentUser : currentUser
 }
 
 export default function NewArticle({currentUser}:Props) {
+  const {postId, userId, status} = useParams()
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const [previewFile, setPreviewFile] = useState<string>();
-  const dispatch = useDispatch<AppDispatch>()
   const post = useSelector((state : RootState) => state.postAction)
   const [newArticle, {isLoading, isError, isSuccess}] = useNewArticeMutation()
+  const {data, isLoading:detailLoading, isFetching} = useGetDetailPostQuery(
+    {postId : postId, userId:userId}, 
+    {skip : !postId || status !== 'edit'}
+  )
+
+  useEffect(() => {
+    dispatch(clearPost())
+    if(status == 'edit' && data){
+      if(userId == currentUser.id){
+        dispatch(setPost(data))
+      }else{
+        navigate('/')
+      }
+    }
+  },[data])
 
   const onSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const request = {...post, userId : currentUser.id!, createAt: new Date().toISOString()}
+    const request = {...post, userId : currentUser.id!, createdAt: new Date().toISOString()}
     newArticle(request)
   }
-  
   if(isSuccess){
     dispatch(clearPost())
     navigate('/')
+  }
+
+  if(detailLoading){
+    return (
+      <div className="w-full bg-[#1B1D2A] rounded-xl flex items-center justify-center h-[500px]">
+        <img src={LoadingIcon} alt="" />
+      </div>
+    )
   }
 
   return (

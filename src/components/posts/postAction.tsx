@@ -5,6 +5,7 @@ import { PopupDialog } from "../popup/popup";
 import { Button } from "../button/button";
 import LoadingIcon from "@/assets/loading.gif";
 import { currentUser } from "@/features/auth/authSlice";
+import { Link } from "react-router-dom";
 
 interface Props {
   _id: string | undefined;
@@ -51,10 +52,10 @@ export default function DropdownMenu({ _id, currentUser, userId }: Props) {
               <h1 className="font-bold px-3 mt-2">Lainnya</h1>
               {currentUser?.id == userId ? (
                 <>
-                  <button className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-gray-300 hover:text-blue-500 hover:bg-slate-600">
+                  <Link to={`/newArticle/${_id}/${currentUser.id}/${`edit`}`} className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-gray-300 hover:text-blue-500 hover:bg-slate-600">
                     <Pencil className="h-4 w-4" />
                     Edit Postingan
-                  </button>
+                  </Link>
                   <button
                     onClick={() => setIsConfirm(true)}
                     className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-gray-300 hover:text-blue-500 hover:bg-slate-600"

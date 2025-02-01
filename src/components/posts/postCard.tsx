@@ -45,7 +45,7 @@ export const PostCard = ({posts, loading, error, success, currentUser}:Props) =>
                               <img src={NoProfile} width={50} className="rounded-full" alt="" /> 
                               <div className="flex flex-col">
                                 <p className="my-auto font-bold">{item.userInfo?.firstName}</p>
-                                <p className="text-xs">{new Date(item.createAt).toLocaleDateString()}</p> 
+                                <p className="text-xs">{new Date(item.createdAt).toLocaleDateString()}</p> 
                               </div>
                             </div>
                             <PostAction 

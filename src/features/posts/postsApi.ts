@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseUrl } from "../auth/authApi";
+import { setPost } from './postSlice';
 
 export interface Post {
   _id?: string
@@ -20,6 +21,21 @@ export const PostsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes : ['Post'],
   endpoints: (builder) => ({
+
+    getDetailPost : builder.query<Post, any>({
+      query : ({postId, userId}) => ({
+        url : `detailPost/${postId}/${userId}`,
+        method : 'GET'
+      }),
+      // async onQueryStarted(_, {dispatch, queryFulfilled}) {
+      //   try {
+      //     const {data} = await queryFulfilled
+      //     dispatch(setPost(data))
+      //   } catch (error) {
+      //     console.error('Failed to fetch', error)
+      //   }
+      // }
+    }),
 
     deletedPost : builder.mutation({
       query : (postId) => ({
@@ -54,6 +70,7 @@ export const PostsApi = createApi({
 });
 
 export const { 
+  useGetDetailPostQuery,
   useDeletedPostMutation,
   useGetPostByUserIdQuery,
   usePostsQuery, 
