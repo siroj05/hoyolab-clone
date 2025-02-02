@@ -8,7 +8,7 @@ export interface Post {
   title: string
   content: string
   userId : string
-  createdAt : string
+  createdAt? : string
   userInfo? : {
     email : string,
     firstName : string
@@ -22,6 +22,15 @@ export const PostsApi = createApi({
   tagTypes : ['Post'],
   endpoints: (builder) => ({
 
+    updatePost : builder.mutation({
+      query : ({body, currentUserId}) => ({
+        url : `updatePost/${currentUserId}`,
+        method : 'PUT',
+        body
+      }),
+      invalidatesTags: ['Post']
+    }),
+    // get detail post
     getDetailPost : builder.query<Post, any>({
       query : ({postId, userId}) => ({
         url : `detailPost/${postId}/${userId}`,
@@ -37,6 +46,8 @@ export const PostsApi = createApi({
       // }
     }),
 
+
+    // delete post
     deletedPost : builder.mutation({
       query : (postId) => ({
         url : `deletePost/${postId}`,
@@ -45,6 +56,7 @@ export const PostsApi = createApi({
       invalidatesTags : ['Post']
     }),
 
+    // get all post by user id
     getPostByUserId : builder.query<Post[], string>({
       query: (userId) => ({
         url : `post/${userId}`,
@@ -53,11 +65,13 @@ export const PostsApi = createApi({
       providesTags: ['Post']
     }),
 
+    // get all post
     posts: builder.query<Post[], void>({
       query: () => `posts`,
       providesTags : ['Post']
     }),
 
+    // create post
     newArtice : builder.mutation<Post, Post>({
       query: (body) => ({
         url : `createPost`,
@@ -70,6 +84,7 @@ export const PostsApi = createApi({
 });
 
 export const { 
+  useUpdatePostMutation,
   useGetDetailPostQuery,
   useDeletedPostMutation,
   useGetPostByUserIdQuery,

@@ -7,7 +7,7 @@ const initialState : Post = {
   title: "",
   content: "",
   userId : "",
-  createdAt : new Date().toISOString(),
+  createdAt : "",
   userInfo : {
     email : "",
     firstName : "",

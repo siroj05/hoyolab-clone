@@ -7,7 +7,7 @@ import { LoaderCircle } from 'lucide-react';
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { currentUser } from "@/features/auth/authSlice";
-import { useGetDetailPostQuery, useNewArticeMutation } from "@/features/posts/postsApi";
+import { useGetDetailPostQuery, useNewArticeMutation, useUpdatePostMutation } from "@/features/posts/postsApi";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { clearPost, setPost } from "@/features/posts/postSlice";
@@ -28,6 +28,7 @@ export default function NewArticle({currentUser}:Props) {
     {postId : postId, userId:userId}, 
     {skip : !postId || status !== 'edit'}
   )
+  const [updatePost, {isLoading:isUpdate, isError:isUpdateError, isSuccess:isSuccessUpdate}] = useUpdatePostMutation()
 
   useEffect(() => {
     dispatch(clearPost())
@@ -42,10 +43,15 @@ export default function NewArticle({currentUser}:Props) {
 
   const onSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const request = {...post, userId : currentUser.id!, createdAt: new Date().toISOString()}
-    newArticle(request)
+    const request = {...post, userId : currentUser.id!}
+    if(status !== 'edit'){
+      newArticle(request)
+    }
+    if(status == 'edit'){
+      updatePost({body : request, currentUserId : currentUser.id})
+    }
   }
-  if(isSuccess){
+  if(isSuccess || isSuccessUpdate){
     dispatch(clearPost())
     navigate('/')
   }
@@ -98,9 +104,9 @@ export default function NewArticle({currentUser}:Props) {
             <Button>
               Preview
             </Button>
-            <Button disable={isLoading} type="submit">
+            <Button disable={isLoading || isUpdate} type="submit">
               {
-                isLoading ? <p className="flex gap-2">
+                (isLoading || isUpdate) ? <p className="flex gap-2">
                   Loading <LoaderCircle className="animate-spin"/>
                 </p> :
                 <p>Posting</p>
