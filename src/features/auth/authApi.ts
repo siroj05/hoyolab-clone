@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react'
 
 // next bikin env
-export const baseUrl = 'http://localhost:3000/api/'
+export const baseUrl = import.meta.env.VITE_API_URL
 
 interface User {
   email : string,

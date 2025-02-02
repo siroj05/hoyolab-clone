@@ -36,7 +36,7 @@ export default function DesktopAccountCenter({
           />
           <div className="flex flex-col w-[430px] gap-4">
             <AccountCenterSideCard/>
-            <AccountCenterSideCardPersonalData currentUser={currentUser}/>
+            <AccountCenterSideCardPersonalData posts={posts} currentUser={currentUser}/>
           </div>
         </div>
       </div>

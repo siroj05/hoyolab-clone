@@ -5,7 +5,7 @@ import { Bell, PencilLine } from "lucide-react";
 import { CollapseProfile, Profile } from "./collapseNavbar/collapseProfile";
 import { AppDispatch } from "@/store/store";
 import { currentUser } from "@/features/auth/authSlice";
-import { NewArtivleNav } from "./collapseNavbar/collapseNewArticle";
+import { NewArticleNav } from "./collapseNavbar/collapseNewArticle";
 
 interface Props {
   setOpen: (value: boolean) => void;
@@ -41,7 +41,7 @@ export default function DekstopNavbar({
         <InputSearch />
       </div>
       <div className="my-auto flex gap-3">
-        <NewArtivleNav/>
+        <NewArticleNav/>
         <Bell className="w-20 my-auto" />
         <Profile
           open={open}

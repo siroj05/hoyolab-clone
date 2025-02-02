@@ -47,11 +47,11 @@ export default function MobileAccountCenter({
           {/* profile section */}
           <div className="flex flex-col gap-1">
             <h1 className="font-semibold max-[425px]:text-[6vw] text-[25px]">
-              {currentUser.firstName}
+              {posts?.[0]?.userInfo?.firstName}
             </h1>
             <div className="flex gap-1">
               <IdCardIcon className="w-4 h-4 bg-violet-900" />
-              <p className="text-[9.5px]">ID Akun: {currentUser.id}</p>
+              <p className="text-[9.5px]">ID Akun: {posts?.[0]?.userInfo?._id}</p>
             </div>
             <div className="flex gap-1">
               <MessageSquareText className="w-4 h-4" />
@@ -62,7 +62,7 @@ export default function MobileAccountCenter({
             {/* user info item */}
             <div className="flex justify-between mx-4 min-[768px]:mx-16 text-[10px] my-4">
               <div className="text-center flex flex-col gap-2">
-                <h1>0</h1>
+                <h1>{posts?.length}</h1>
                 <p>Postingan</p>
               </div>
               <div className="text-center flex flex-col gap-2">

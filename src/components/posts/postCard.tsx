@@ -7,6 +7,7 @@ import { formatDate } from "@/config/utils/formatDate";
 import PostAction from "./postAction";
 import { currentUser } from "@/features/auth/authSlice";
 import { Eye, MessageSquareQuote, ThumbsUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Props {
   posts? : Post[]
@@ -43,7 +44,9 @@ export const PostCard = ({posts, loading, error, success, currentUser}:Props) =>
                           <div className="flex justify-between">
                             {/* <CircleUser className="w-10 h-10"/> */}
                             <div className="flex gap-2">
-                              <img src={NoProfile} width={50} className="rounded-full" alt="" /> 
+                              <Link to={`/accountCenter/${item.userId}`}>
+                                <img src={NoProfile} width={50} className="rounded-full" alt="" /> 
+                              </Link>
                               <div className="flex flex-col">
                                 <p className="my-auto font-bold">{item.userInfo?.firstName}</p>
                                 <p className="text-xs">{new Date(item?.createdAt??'')?.toLocaleDateString()}</p> 

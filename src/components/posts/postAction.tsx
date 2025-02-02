@@ -43,7 +43,7 @@ export default function DropdownMenu({ _id, currentUser, userId }: Props) {
     <>
       <div className="relative" ref={dropdownRef}>
         <div className="flex gap-4">
-          {userId !== currentUser.id && <button className="py-2 px-8 text-xs bg-blue-800/50 rounded-full font-bold text-blue-500/90 hover:text-white hover:bg-blue-600">Ikuti</button>}
+          {userId !== currentUser.id && <button className="max-sm:py-1 max-sm:px-4 py-2 px-8 text-xs bg-blue-800/50 rounded-full font-bold text-blue-500/90 hover:text-white hover:bg-blue-600">Ikuti</button>}
           <button type="button" onClick={() => setIsOpen(!isOpen)}>
             <EllipsisVertical className="text-white/65" />
           </button>

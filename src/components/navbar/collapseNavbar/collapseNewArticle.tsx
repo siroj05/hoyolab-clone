@@ -1,6 +1,6 @@
 import { PencilLine } from "lucide-react";
 
-export const NewArtivleNav = () => {
+export const NewArticleNav = () => {
   return (
     <div className="relative">
       <button className="hover:text-blue-500 rounded-full p-2 hover:bg-slate-600">

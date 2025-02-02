@@ -34,7 +34,7 @@ export default function UserInfo({posts}:Props) {
           <div className="flex">
             <div className="flex gap-5 relative">
               <div className="right-0 -translate-y-1/2 mx-28">
-                <h1 className="my-auto text-2xl">{currentUser.firstName}</h1>
+                <h1 className="my-auto text-2xl">{posts?.[0]?.userInfo?.firstName}</h1>
                 <div className="flex gap-1 text-white/55">
                   <MessageSquareMore className="w-5 h-5" />
                   <p className="text-xs">
