@@ -6,6 +6,7 @@ import NoProfile from "@/assets/no-profile 1.png"
 import { formatDate } from "@/config/utils/formatDate";
 import PostAction from "./postAction";
 import { currentUser } from "@/features/auth/authSlice";
+import { Eye, MessageSquareQuote, ThumbsUp } from "lucide-react";
 
 interface Props {
   posts? : Post[]
@@ -48,14 +49,32 @@ export const PostCard = ({posts, loading, error, success, currentUser}:Props) =>
                                 <p className="text-xs">{new Date(item?.createdAt??'')?.toLocaleDateString()}</p> 
                               </div>
                             </div>
-                            <PostAction 
-                              _id={item._id}
-                              currentUser={currentUser} 
-                              userId={item.userId}                            />
+                              <PostAction 
+                                _id={item._id}
+                                currentUser={currentUser} 
+                                userId={item.userId}
+                              />
                           </div>
                           <h1 className="font-bold text-lg">{item.title}</h1>
                           <div dangerouslySetInnerHTML={{ __html: item.content }}/>
                           <img src={item.cover} alt="" width={300} className="object-contain" />
+                        </div>
+                      </div>
+                      {/* comments section */}
+                      <div className="text-white/55 flex justify-between">
+                        <div className="flex gap-2">
+                          <Eye className="w-5 h-5"/>
+                          <p className="text-xs my-auto">134 rb</p>
+                        </div>
+                        <div className="flex gap-6">
+                          <button className="flex gap-2">
+                            <MessageSquareQuote className="w-5 h-5"/>
+                            <p className="text-xs my-auto">134 rb</p>
+                          </button>
+                          <button className="flex gap-2">
+                            <ThumbsUp  className="w-5 h-5"/>
+                            <p className="text-xs my-auto">134 rb</p>
+                          </button>
                         </div>
                       </div>
                     </div>
