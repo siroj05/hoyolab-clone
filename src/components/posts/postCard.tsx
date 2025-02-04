@@ -70,10 +70,10 @@ export const PostCard = ({posts, loading, error, success, currentUser}:Props) =>
                           <p className="text-xs my-auto">134 rb</p>
                         </div>
                         <div className="flex gap-6">
-                          <button className="flex gap-2">
+                          <Link to={`/post/comments/${item._id}`} className="flex gap-2">
                             <MessageSquareQuote className="w-5 h-5"/>
                             <p className="text-xs my-auto">134 rb</p>
-                          </button>
+                          </Link>
                           <button className="flex gap-2">
                             <ThumbsUp  className="w-5 h-5"/>
                             <p className="text-xs my-auto">134 rb</p>
