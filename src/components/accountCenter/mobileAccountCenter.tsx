@@ -7,6 +7,7 @@ import { currentUser } from "@/features/auth/authSlice";
 import { PostCard } from "../posts/postCard";
 import { Post } from "@/features/posts/postsApi";
 import LoadingIcon from "@/assets/loading.gif";
+import { Skeleton } from "../ui/skeleton";
 interface Props {
   currentUser: currentUser;
   posts?: Post[] | undefined;
@@ -46,19 +47,30 @@ export default function MobileAccountCenter({
         <div className="px-4">
           {/* profile section */}
           <div className="flex flex-col gap-1">
-            <h1 className="font-semibold max-[425px]:text-[6vw] text-[25px]">
-              {posts?.[0]?.userInfo?.firstName}
-            </h1>
-            <div className="flex gap-1">
-              <IdCardIcon className="w-4 h-4 bg-violet-900" />
-              <p className="text-[9.5px]">ID Akun: {posts?.[0]?.userInfo?._id}</p>
-            </div>
-            <div className="flex gap-1">
-              <MessageSquareText className="w-4 h-4" />
-              <p className="text-[9.5px]">
-                Tanda tangan ini diperlihatkan untuk semua orang~
-              </p>
-            </div>
+            {
+              loading ?
+              <>
+                <Skeleton className="w-[150px] h-[20px] bg-slate-500" /> 
+                <Skeleton className="w-[200px] h-[10px] bg-slate-500 rounded-sm" /> 
+                <Skeleton className="w-[220px] h-[10px] bg-slate-500 rounded-sm" /> 
+              </>
+              :
+              <>
+                <h1 className="font-semibold max-[425px]:text-[6vw] text-[25px]">
+                  {posts?.[0]?.userInfo?.firstName}
+                </h1>
+                <div className="flex gap-1">
+                  <IdCardIcon className="w-4 h-4 bg-violet-900" />
+                  <p className="text-[9.5px]">ID Akun: {posts?.[0]?.userInfo?._id}</p>
+                </div>
+                <div className="flex gap-1">
+                  <MessageSquareText className="w-4 h-4" />
+                  <p className="text-[9.5px]">
+                    Tanda tangan ini diperlihatkan untuk semua orang~
+                  </p>
+                </div>
+              </>
+            }
             {/* user info item */}
             <div className="flex justify-between mx-4 min-[768px]:mx-16 text-[10px] my-4">
               <div className="text-center flex flex-col gap-2">

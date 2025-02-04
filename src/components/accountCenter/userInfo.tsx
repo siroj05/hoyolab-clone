@@ -5,12 +5,14 @@ import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 import scrollYDetect from "@/config/utils/scrollY";
 import { Post } from "@/features/posts/postsApi";
+import { Skeleton } from "../ui/skeleton";
 
 interface Props {
   posts : Post[] | undefined
+  loading : boolean
 }
 
-export default function UserInfo({posts}:Props) {
+export default function UserInfo({posts, loading}:Props) {
   const currentUser = useSelector((state: RootState) => state.currentUser);
   const isScroll = scrollYDetect()
   const userInfo = [
@@ -34,13 +36,24 @@ export default function UserInfo({posts}:Props) {
           <div className="flex">
             <div className="flex gap-5 relative">
               <div className="right-0 -translate-y-1/2 mx-28">
-                <h1 className="my-auto text-2xl">{posts?.[0]?.userInfo?.firstName}</h1>
-                <div className="flex gap-1 text-white/55">
-                  <MessageSquareMore className="w-5 h-5" />
-                  <p className="text-xs">
-                    Tanda tangan ini diperlihatkan untuk semua orang~
-                  </p>
-                </div>
+                {loading ? 
+                <>
+                  <div className="flex flex-col gap-1">
+                    <Skeleton className="w-[200px] my-auto h-[25px] bg-slate-500 rounded-,d" />
+                    <Skeleton className="w-[300px] my-auto h-[15px] bg-slate-500 rounded-,d" />
+                  </div>
+                </>
+                :
+                <>
+                  <h1 className="my-auto text-2xl">{posts?.[0]?.userInfo?.firstName}</h1>
+                  <div className="flex gap-1 text-white/55">
+                    <MessageSquareMore className="w-5 h-5" />
+                    <p className="text-xs">
+                      Tanda tangan ini diperlihatkan untuk semua orang~
+                    </p>
+                  </div>
+                </>
+                }
               </div>
             </div>
           </div>

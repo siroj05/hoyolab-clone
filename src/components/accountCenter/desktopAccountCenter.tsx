@@ -23,7 +23,7 @@ export default function DesktopAccountCenter({
 
   return (
     <>
-      <UserInfo posts={posts}/>
+      <UserInfo posts={posts} loading={loading}/>
       {/* main posts user */}
       <div className="relative lg:w-5/6 xl:w-4/6 p-4 mt-10 sm:w-full mx-auto">
         <div className="flex flex-row gap-5 items-start">
