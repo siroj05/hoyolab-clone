@@ -34,7 +34,7 @@ export const PostCard = ({posts, loading, error, success, currentUser}:Props) =>
           <TabPosts />
           {posts && posts.length > 0 ? 
           (
-            <div>
+            <>
               {
                 posts.map((item:Post, i:number) =>(
                   <div key={item._id} className="max-[768px]:bg-[#1B1D2A] max-[768px]:rounded-3xl max-[768px]:mb-3">
@@ -86,7 +86,7 @@ export const PostCard = ({posts, loading, error, success, currentUser}:Props) =>
                 ))
               }
               
-            </div>
+            </>
           ):
           (
             <div className="flex justify-center items-center h-full">

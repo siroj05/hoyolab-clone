@@ -25,7 +25,7 @@ export default function NewArticle({currentUser}:Props) {
   const post = useSelector((state : RootState) => state.postAction)
   const [newArticle, {isLoading, isError, isSuccess}] = useNewArticeMutation()
   const {data, isLoading:detailLoading, isFetching} = useGetDetailPostQuery(
-    {postId : postId, userId:userId}, 
+    postId, 
     {skip : !postId || status !== 'edit'}
   )
   const [updatePost, {isLoading:isUpdate, isError:isUpdateError, isSuccess:isSuccessUpdate}] = useUpdatePostMutation()

@@ -1,15 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
-import InputSearch from "./InputSearch";
-import { Bell, PencilLine } from 'lucide-react';
-import { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, resetApiState, RootState } from "@/store/store";
 import { useLogoutMutation, useProfileQuery } from "@/features/auth/authApi";
 import { resetCredential, setCredential } from "@/features/auth/authSlice";
-
 import { useMediaQuery } from 'react-responsive'
-import DekstopNavbar from "./desktopNavbar";
-import MobileNavbar from "./mobileNavbar";
+import DekstopNavbar from "./customNavbar/desktopNavbar";
+import {MobileNavbar} from "./customNavbar/mobileNavbar";
 import Sidebar from "./mobileSidebar";
 import scrollYDetect from "@/config/utils/scrollY";
 

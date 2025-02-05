@@ -25,7 +25,7 @@ export default function AppRoutes() {
             <Route path="/accountCenter/:id" element={<AccountCenter />} />
           </Route>}
           <Route path="/newArticle/:postId/:userId/:status" element={<NewArticle currentUser={currentUser} />} />
-          <Route path="/post/comments/:postId" element={<DetailPost/>} />
+          {isDesktop && <Route path="/post/comments/:postId" element={<DetailPost/>} />}
         </Route>
       </Route>
 
@@ -34,6 +34,7 @@ export default function AppRoutes() {
         <Route element={<AccountCenterLayout />}>
           <Route element={<ProtectedRoutes />}>
             <Route path="/accountCenter/:id" element={<AccountCenter />} />
+            <Route path="/post/comments/:postId" element={<DetailPost/>} />
           </Route>
         </Route>
       )}

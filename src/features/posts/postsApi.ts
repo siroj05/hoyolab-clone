@@ -32,8 +32,8 @@ export const PostsApi = createApi({
     }),
     // get detail post
     getDetailPost : builder.query<Post, any>({
-      query : ({postId, userId}) => ({
-        url : `detailPost/${postId}/${userId}`,
+      query : (postId) => ({
+        url : `detailPost/${postId}`,
         method : 'GET'
       }),
       // async onQueryStarted(_, {dispatch, queryFulfilled}) {

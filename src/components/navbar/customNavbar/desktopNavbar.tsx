@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import InputSearch from "./InputSearch";
+import InputSearch from "../InputSearch";
 import { Bell, PencilLine } from "lucide-react";
-import { CollapseProfile, Profile } from "./collapseNavbar/collapseProfile";
+import { CollapseProfile, Profile } from "../collapseNavbar/collapseProfile";
 import { AppDispatch } from "@/store/store";
 import { currentUser } from "@/features/auth/authSlice";
-import { NewArticleNav } from "./collapseNavbar/collapseNewArticle";
+import { NewArticleNav } from "../collapseNavbar/collapseNewArticle";
 
 interface Props {
   setOpen: (value: boolean) => void;
