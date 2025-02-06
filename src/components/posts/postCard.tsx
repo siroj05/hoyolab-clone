@@ -34,7 +34,7 @@ export const PostCard = ({posts, loading, error, success, currentUser}:Props) =>
           <TabPosts />
           {posts && posts.length > 0 ? 
           (
-            <div>
+            <>
               {
                 posts.map((item:Post, i:number) =>(
                   <div key={item._id} className="max-[768px]:bg-[#1B1D2A] max-[768px]:rounded-3xl max-[768px]:mb-3">
@@ -70,10 +70,10 @@ export const PostCard = ({posts, loading, error, success, currentUser}:Props) =>
                           <p className="text-xs my-auto">134 rb</p>
                         </div>
                         <div className="flex gap-6">
-                          <button className="flex gap-2">
+                          <Link to={`/post/comments/${item._id}`} className="flex gap-2">
                             <MessageSquareQuote className="w-5 h-5"/>
                             <p className="text-xs my-auto">134 rb</p>
-                          </button>
+                          </Link>
                           <button className="flex gap-2">
                             <ThumbsUp  className="w-5 h-5"/>
                             <p className="text-xs my-auto">134 rb</p>
@@ -86,7 +86,7 @@ export const PostCard = ({posts, loading, error, success, currentUser}:Props) =>
                 ))
               }
               
-            </div>
+            </>
           ):
           (
             <div className="flex justify-center items-center h-full">

@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import DesktopAccountCenter from "@/components/accountCenter/desktopAccountCenter";
 import { useGetPostByUserIdQuery } from "@/features/posts/postsApi";
 import { useParams } from "react-router-dom";
+import { CustomMobileNavbar } from "@/components/navbar/customNavbar/mobileNavbar";
 
 export default function AccountCenter() {
   const isDesktop = useMediaQuery({ query: "(min-width: 769px)" });
@@ -16,13 +17,20 @@ export default function AccountCenter() {
   return (
     // mobile vers
     (isMobile && (
-      <MobileAccountCenter
-        currentUser={currentUser}
-        posts={data}
-        loading={isLoading}
-        success={isSuccess}
-        error={isError}
-      />
+      <>
+        <CustomMobileNavbar>
+          Info Akun
+        </CustomMobileNavbar>
+        <div className="relative lg:w-5/6 xl:w-4/6 p-4 mt-10 sm:w-full mx-auto">
+          <MobileAccountCenter
+            currentUser={currentUser}
+            posts={data}
+            loading={isLoading}
+            success={isSuccess}
+            error={isError}
+          />
+        </div>
+      </>
     )) ||
     (isDesktop && (
       <DesktopAccountCenter
