@@ -2,13 +2,22 @@ import { CustomMobileNavbar } from "@/components/navbar/customNavbar/mobileNavba
 import { useGetDetailPostQuery } from "@/features/posts/postsApi";
 import { useParams } from "react-router-dom";
 import Avatar from "@/assets/no-profile 1.png";
-import { Eye, MessageSquareQuote, Plus, ThumbsUp } from "lucide-react";
+import {
+  ChevronDown,
+  Eye,
+  MessageSquareQuote,
+  Plus,
+  ThumbsUp,
+  Triangle,
+  X,
+} from "lucide-react";
+import { useState } from "react";
 
 export default function DetailPost() {
   const { postId } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading, isFetching } = useGetDetailPostQuery(postId);
-  console.log(isLoading);
-  console.log(data);
+  console.log(isOpen);
   return (
     <>
       <CustomMobileNavbar>Rincian Posting</CustomMobileNavbar>
@@ -56,8 +65,49 @@ export default function DetailPost() {
             </div>
           </div>
         </div>
-        <div className="w-full bg-[#1B1D2A] min-[769px]:rounded-xl px-4">
-          disini ntar komen
+        <div className="w-full bg-[#1B1D2A] min-[769px]:rounded-xl px-4 py-4 flex flex-col gap-4">
+          <button
+            className="w-full flex justify-start bg-[#1B1D2A] text-white/60 py-[1vh] rounded-lg border-[1px] border-white/20 text-[3vw] px-2 font-bold"
+            onClick={() => setIsOpen(true)}
+          >
+            Cepat tulis komentar kalian~
+          </button>
+          <div>
+            <button className="text-xs text-white/90 font-semibold flex gap-1">
+              <p className="my-auto">Semua Komentar</p>{" "}
+              <ChevronDown className="w-4 h-4 my-auto" />
+            </button>
+          </div>
+          <hr className="hr-color-secondary" />
+          <h2 className="text-center  text-[3vw] px-2 text-white/55 font-bold">
+            Masih belum ada komentar
+          </h2>
+        </div>
+      </div>
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300" />
+      )}
+      <div
+        className={`fixed bottom-0 bg-[#1B1D2A] ${
+          isOpen ? "translate-y-0 h-5/6" : "translate-y-full"
+        } duration-500 transition-transform w-full rounded-t-2xl z-50`}
+      >
+        <div className="flex flex-col gap-5 px-3 py-2">
+          <div className="flex justify-between  text-xs">
+            <button type="button" onClick={() => setIsOpen(false)}>
+              <X className="w-5 h-5 text-white/55" />
+            </button>
+            <h1 className="font-bold">Komentar</h1>
+            <div>
+              <button className="text-blue-800 font-semibold">Kirim</button>
+            </div>
+          </div>
+          <textarea
+          placeholder="Cepat tulis komentar kalian~"
+            className="bg-[#1B1D2A] text-xs placeholder:text-white/60 w-full min-h-[200px] overflow-y-auto resize-none outline-none border-none"
+            name=""
+            id=""
+          />
         </div>
       </div>
     </>
