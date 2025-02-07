@@ -9,11 +9,22 @@ export interface Post {
   content: string
   userId : string
   createdAt? : string
-  userInfo? : {
-    email : string,
-    firstName : string
-    _id : string
-  }
+  userInfo? : UserInfo
+  comments? : Comments[]
+}
+
+export interface Comments {
+  comment : string
+  createdAt : string
+  postId : string
+  userId : string
+  userInfo : UserInfo
+}
+
+export interface UserInfo {
+  email : string,
+  firstName : string
+  _id : string
 }
 
 export const PostsApi = createApi({
@@ -22,6 +33,18 @@ export const PostsApi = createApi({
   tagTypes : ['Post'],
   endpoints: (builder) => ({
 
+    // comment
+    // note : ini sementara 
+    createComment : builder.mutation<Comment, any>({
+      query: (body) => ({
+        url : `comment`,
+        method : 'POST',
+        body
+      }),
+      invalidatesTags: (result, error, { postId }) => [{ type: 'Post', id: postId }]
+    }),
+
+    // ============================
     updatePost : builder.mutation({
       query : ({body, currentUserId}) => ({
         url : `updatePost/${currentUserId}`,
@@ -36,14 +59,7 @@ export const PostsApi = createApi({
         url : `detailPost/${postId}`,
         method : 'GET'
       }),
-      // async onQueryStarted(_, {dispatch, queryFulfilled}) {
-      //   try {
-      //     const {data} = await queryFulfilled
-      //     dispatch(setPost(data))
-      //   } catch (error) {
-      //     console.error('Failed to fetch', error)
-      //   }
-      // }
+      providesTags: (result, error, postId) => [{ type: 'Post', id: postId }],
     }),
 
 
@@ -84,6 +100,7 @@ export const PostsApi = createApi({
 });
 
 export const { 
+  useCreateCommentMutation,
   useUpdatePostMutation,
   useGetDetailPostQuery,
   useDeletedPostMutation,

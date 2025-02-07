@@ -1,5 +1,5 @@
 import { CustomMobileNavbar } from "@/components/navbar/customNavbar/mobileNavbar";
-import { useGetDetailPostQuery } from "@/features/posts/postsApi";
+import { useCreateCommentMutation, useGetDetailPostQuery } from "@/features/posts/postsApi";
 import { useParams } from "react-router-dom";
 import Avatar from "@/assets/no-profile 1.png";
 import {
@@ -12,12 +12,30 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
+import { currentUser } from "@/features/auth/authSlice";
 
-export default function DetailPost() {
+interface Props {
+  currnetUser : currentUser
+}
+
+export default function DetailPost({currnetUser}:Props) {
   const { postId } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading, isFetching } = useGetDetailPostQuery(postId);
-  console.log(isOpen);
+  const [createComment, {isLoading:lodingComment, isSuccess:commentSuccess}] = useCreateCommentMutation()
+  const [comment, setComment] = useState<string>()
+  const onSubmit = () => {
+    const request = {
+      postId : postId,
+      userId : currnetUser.id,
+      comment : comment
+    }
+    createComment(request)
+    setIsOpen(false)
+    // console.log(request)
+    setComment('')
+    // console.log('isSuccess1', commentSuccess)
+  }
   return (
     <>
       <CustomMobileNavbar>Rincian Posting</CustomMobileNavbar>
@@ -79,11 +97,30 @@ export default function DetailPost() {
             </button>
           </div>
           <hr className="hr-color-secondary" />
+          {data?.comments ? data?.comments.map((comment) => {
+            // console.log(comment)
+            return(
+              <div className="flex flex-col gap-2" key={comment.postId}>
+                <div className="flex gap-1">
+                  <img src={Avatar} alt="" className="w-[25px] rounded-full" />
+                  <h1 className="text-xs my-auto">{comment?.userInfo?.firstName}</h1>
+                </div>
+                <div className="ml-5">
+                  <div className="bg-slate-600 text-xs rounded-lg font-bold w-full p-2">
+                    {comment.comment}
+                  </div>
+                </div>
+              </div>
+            )
+          }):
           <h2 className="text-center  text-[3vw] px-2 text-white/55 font-bold">
             Masih belum ada komentar
-          </h2>
+          </h2> 
+          }
         </div>
       </div>
+
+      {/* comment section */}
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300" />
       )}
@@ -99,14 +136,16 @@ export default function DetailPost() {
             </button>
             <h1 className="font-bold">Komentar</h1>
             <div>
-              <button className="text-blue-800 font-semibold">Kirim</button>
+              <button onClick={onSubmit} className="text-blue-800 font-semibold">Kirim</button>
             </div>
           </div>
           <textarea
           placeholder="Cepat tulis komentar kalian~"
             className="bg-[#1B1D2A] text-xs placeholder:text-white/60 w-full min-h-[200px] overflow-y-auto resize-none outline-none border-none"
-            name=""
-            id=""
+            name="comment"
+            id="comment"
+            onChange={(e) => setComment(e.target.value)}
+            value={comment}
           />
         </div>
       </div>
