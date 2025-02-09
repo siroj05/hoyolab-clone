@@ -5,13 +5,14 @@ import Avatar from "@/assets/no-profile 1.png";
 import {
   ChevronDown,
   Eye,
+  LoaderCircle,
   MessageSquareQuote,
   Plus,
   ThumbsUp,
   Triangle,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { currentUser } from "@/features/auth/authSlice";
 
 interface Props {
@@ -24,18 +25,27 @@ export default function DetailPost({currnetUser}:Props) {
   const { data, isLoading, isFetching } = useGetDetailPostQuery(postId);
   const [createComment, {isLoading:lodingComment, isSuccess:commentSuccess}] = useCreateCommentMutation()
   const [comment, setComment] = useState<string>()
+  const [error, setError] = useState()
   const onSubmit = () => {
     const request = {
       postId : postId,
       userId : currnetUser.id,
       comment : comment
     }
+    if(comment?.length == 0) {
+
+      return
+    }
     createComment(request)
-    setIsOpen(false)
-    // console.log(request)
-    setComment('')
-    // console.log('isSuccess1', commentSuccess)
   }
+
+  useEffect(() => {
+    if(commentSuccess){
+      setIsOpen(false)
+      setComment('')
+    } 
+  },[lodingComment])
+
   return (
     <>
       <CustomMobileNavbar>Rincian Posting</CustomMobileNavbar>
@@ -97,8 +107,7 @@ export default function DetailPost({currnetUser}:Props) {
             </button>
           </div>
           <hr className="hr-color-secondary" />
-          {data?.comments ? data?.comments.map((comment) => {
-            // console.log(comment)
+          {data?.comments && data?.comments?.length > 0 ? data?.comments.map((comment) => {
             return(
               <div className="flex flex-col gap-2" key={comment.postId}>
                 <div className="flex gap-1">
@@ -136,7 +145,10 @@ export default function DetailPost({currnetUser}:Props) {
             </button>
             <h1 className="font-bold">Komentar</h1>
             <div>
-              <button onClick={onSubmit} className="text-blue-800 font-semibold">Kirim</button>
+              { lodingComment ? 
+                <LoaderCircle className="animate-spin w-4 h-4"/>:
+                <button onClick={onSubmit} className="text-blue-800 font-semibold">Kirim</button>
+              }
             </div>
           </div>
           <textarea
