@@ -14,7 +14,7 @@ interface Props {
 
 export default function UserInfo({posts, loading}:Props) {
   const currentUser = useSelector((state: RootState) => state.currentUser);
-  const isScroll = scrollYDetect()
+  const isScroll = scrollYDetect(248)
   const userInfo = [
     {name : "Postingan", count : posts?.length?? 0},
     {name : "Ikuti", count : 0},
