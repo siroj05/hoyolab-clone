@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { currentUser } from "@/features/auth/authSlice";
 import { useMediaQuery } from "react-responsive";
 import DetailPostMobileScreen from "@/components/detailPost/detailPostMobileScreen";
+import DetailPostDesktopScreen from "@/components/detailPost/detailPostDesktopScreen";
 
 interface Props {
   currnetUser : currentUser
@@ -51,6 +52,12 @@ export default function DetailPost({currnetUser}:Props) {
           onSubmit={onSubmit}
           setComment={setComment}
           comment={comment}
+        />
+      }
+      {
+        isDesktop &&
+        <DetailPostDesktopScreen 
+          data={data}
         />
       }
     </>

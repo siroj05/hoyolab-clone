@@ -100,7 +100,7 @@ export default function DetailPostMobileScreen({
                   </div>
                   <div className="flex gap-2">
                     <MessageSquareQuote className="w-5 h-5" />
-                    <p className="text-xs my-auto">134 rb</p>
+                    <p className="text-xs my-auto">{data?.comments?.length}</p>
                   </div>
                   <div className="flex gap-2">
                     <ThumbsUp className="w-5 h-5" />

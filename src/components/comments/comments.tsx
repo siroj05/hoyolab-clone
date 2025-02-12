@@ -38,10 +38,11 @@ export default function Comments({
                   {comment?.userInfo?.firstName}
                 </h1>
               </div>
-              <div className="ml-5">
-                <div className="bg-slate-600 text-xs rounded-lg font-bold w-full p-2">
+              <div className="ml-7 flex flex-col gap-1">
+                <div className="bg-slate-600 text-xs rounded-lg font-bold w-full px-2 py-3">
                   {comment.comment}
                 </div>
+                <p className="text-[60%]">{new Date(comment.createdAt).toLocaleDateString()}</p>
               </div>
             </div>
           );
