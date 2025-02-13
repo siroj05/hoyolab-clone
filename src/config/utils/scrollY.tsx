@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-const scrollYDetect = () => {
+const scrollYDetect = (valueY:number) => {
   const [scrollY, setScrollY] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 248) {
+      if (window.scrollY > valueY) {
         setScrollY(true);
       } else {
         setScrollY(false);

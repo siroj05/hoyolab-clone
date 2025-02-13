@@ -14,9 +14,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   
   const dispatch = useDispatch<AppDispatch>()
-  const {data, isFetching} = useProfileQuery('profile',{
-    pollingInterval: 900000, // 15 menit
-  })
+  
   const currentUser = useSelector((state : RootState) => state.currentUser)
   const [logout, {isLoading : logoutLoading}] = useLogoutMutation()
   // handle logout
@@ -27,14 +25,6 @@ export default function Navbar() {
     localStorage.removeItem('items')
     setOpen(false)
   }
-  // set credential
-  useEffect(() => {
-    if(data) dispatch(setCredential({
-      id : data?.user.id,
-      firstName : data?.user.firstName,
-      email : data?.user.email
-    }))
-  },[data, dispatch])
 
   // media query
 
