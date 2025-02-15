@@ -58,6 +58,11 @@ export default function DetailPost({currnetUser}:Props) {
         isDesktop &&
         <DetailPostDesktopScreen 
           data={data}
+          setComment={setComment}
+          comment={comment??""}
+          loadingComment={loadingComment}
+          onSubmit={onSubmit}
+          isLoading={isLoading}
         />
       }
     </>
