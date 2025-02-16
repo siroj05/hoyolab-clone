@@ -36,7 +36,7 @@ export default function Navbar() {
     setOpen(false)
   },[location])
 
-  const isScroll = scrollYDetect()
+  const isScroll = scrollYDetect(245)
 
   return (
     <>
