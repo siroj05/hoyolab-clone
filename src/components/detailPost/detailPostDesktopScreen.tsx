@@ -3,8 +3,9 @@ import Avatar from "@/assets/no-profile 1.png";
 import Card from "../card";
 import { Eye, LoaderCircle, MessageSquareQuote, PlusIcon, ThumbsUp } from "lucide-react";
 import { Button } from "../button/button";
-import { useState } from "react";
+import LoadingIcon from "@/assets/loading.gif"
 import Comments from "../comments/comments";
+import { Skeleton } from "../ui/skeleton";
 
 interface Props {
   data?: Post;
@@ -23,6 +24,32 @@ export default function DetailPostDesktopScreen({
   isLoading,
   loadingComment,
 }: Props) {
+
+  if(isLoading) return (
+    <div className="flex gap-2 flex-row items-start">
+      <div className="w-full bg-[#1B1D2A] rounded-xl flex items-center justify-center h-[500px]">
+        <img src={LoadingIcon} alt="" />
+      </div>
+      <Card>
+        <div className="w-[300px] flex flex-col gap-2">
+          <div>
+            <Skeleton className="w-[150px] h-[25px] bg-slate-500 rounded  my-auto" /> 
+          </div>
+          <div className="flex justify-between">
+            <div className="flex gap-2">
+              <img src={Avatar} width={50} alt="" className="rounded-full" />
+              <Skeleton className="w-[150px] h-[25px] bg-slate-500 rounded  my-auto" /> 
+            </div>
+            <div className="my-auto">
+              <Skeleton className="w-[50px] h-[35px] bg-slate-500 rounded-xl  my-auto" /> 
+            </div>
+          </div>
+        </div>
+      </Card>
+    </div>
+    
+  )
+
   return (
     <div className="flex gap-2 flex-row items-start">
       <div className="w-full min-[769px]:bg-[#1B1D2A] min-[769px]:rounded-xl">

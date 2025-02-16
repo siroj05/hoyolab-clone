@@ -12,13 +12,14 @@ export default function FormLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
-  const [login, {isLoading, isError, isSuccess}] = useLoginMutation()
+  const [login, {isLoading, isError, isSuccess, error}] = useLoginMutation()
 
   const isDisable = () => {
     if (username.length > 0 && password.length > 0) return false;
     else return true;
   };
 
+  
   if(isSuccess) dispatch(closePopup())
   
   return (
@@ -58,6 +59,7 @@ export default function FormLogin() {
           }
         </div>
       </ButtonAuth>
+      {isError && <p className="text-red-600 text-xs">{error?.data?.message}</p>}
     </form>
   );
 }
