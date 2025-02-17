@@ -6,7 +6,11 @@ import { useMediaQuery } from "react-responsive";
 import MobileScreenNewPost from "./mobileScreenNewPost";
 import MobileScreenPostCard from "./mobileScreenPostCard";
 import { usePostsQuery } from "@/features/posts/postsApi";
+import { useSearchParams } from "react-router-dom";
 export default function Posts() {
+  const [searchParams] = useSearchParams()
+  const params = searchParams.get('keyword') || ""
+  console.log(params)
   const {data:posts, isLoading, isError, isSuccess} = usePostsQuery()
   const currentUser = useSelector((state : RootState) => state.currentUser)
   const isDesktop= useMediaQuery({ query: '(min-width: 769px)' })
