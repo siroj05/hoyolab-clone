@@ -76,7 +76,7 @@ export default function UserInfo({posts, loading}:Props) {
 
       {/* fix this section */}
       {/* info user */}
-      <div className="p-3 bg-[#1B1D2A] h-[55px] sticky top-12 z-50 border-b-[1px] hr-color">
+      <div className="p-3 bg-[#1B1D2A] h-[55px] sticky top-[2.5rem] z-50 border-y-[1px] hr-color">
         <div className="lg:w-5/6 xl:w-4/6 mx-auto">
           <div className="flex gap-4">
             {/* besar -my-[80px] kecil -my-[10px]*/}
