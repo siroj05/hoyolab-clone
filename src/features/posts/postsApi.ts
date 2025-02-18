@@ -82,8 +82,11 @@ export const PostsApi = createApi({
     }),
 
     // get all post
-    posts: builder.query<Post[], void>({
-      query: () => `posts`,
+    posts: builder.query<Post[], any>({
+      query: (search) => ({
+        url : `/posts`,
+        params : search ? {search} : undefined
+      }),
       providesTags : ['Post']
     }),
 

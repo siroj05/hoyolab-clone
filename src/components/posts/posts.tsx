@@ -10,8 +10,19 @@ import { useSearchParams } from "react-router-dom";
 export default function Posts() {
   const [searchParams] = useSearchParams()
   const params = searchParams.get('keyword') || ""
-  console.log(params)
-  const {data:posts, isLoading, isError, isSuccess} = usePostsQuery()
+  const {
+    data:posts, 
+    isLoading, 
+    isError, 
+    isSuccess,
+    isFetching
+  } = usePostsQuery(
+    params, 
+    {
+      refetchOnMountOrArgChange: true
+    }
+  )
+
   const currentUser = useSelector((state : RootState) => state.currentUser)
   const isDesktop= useMediaQuery({ query: '(min-width: 769px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
@@ -21,7 +32,7 @@ export default function Posts() {
       <div className="flex flex-row gap-5 items-start">
         {/* Main posts */}
         <PostCard
-          loading={isLoading}
+          loading={isLoading || isFetching}
           error={isError}
           success={isSuccess}
           posts={posts}

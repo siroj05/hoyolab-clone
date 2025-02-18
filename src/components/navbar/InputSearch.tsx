@@ -2,7 +2,6 @@ import { Search } from "lucide-react";
 import { FormEvent } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 export default function InputSearch() {
-  const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
