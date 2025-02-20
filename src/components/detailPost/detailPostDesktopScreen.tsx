@@ -53,7 +53,7 @@ export default function DetailPostDesktopScreen({
   return (
     <div className="flex gap-2 flex-row items-start">
       <div className="w-full min-[769px]:bg-[#1B1D2A] min-[769px]:rounded-xl">
-        <div className="sticky z-30 bg-primary rounded-t-xl top-[3rem]">
+        <div className="sticky z-30 bg-primary rounded-t-xl top-[2.5rem]">
           <h1 className="p-5 font-bold">Rincian Posting</h1>
           <hr className="hr-color" />
         </div>
