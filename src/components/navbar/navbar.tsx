@@ -1,5 +1,5 @@
-import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, resetApiState, RootState } from "@/store/store";
 import { useLogoutMutation, useProfileQuery } from "@/features/auth/authApi";
@@ -26,6 +26,17 @@ export default function Navbar() {
     setOpen(false)
   }
 
+  // search query
+  const navigate = useNavigate()
+  const onSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    navigate('/')
+    const form = e.target as HTMLFormElement
+    const formData = new FormData(form)
+    const value = formData.get('search') as string
+    navigate(`/home?keyword=${encodeURIComponent(value)}`);
+  }
+
   // media query
 
   const isDesktop= useMediaQuery({ query: '(min-width: 769px)' })
@@ -49,10 +60,12 @@ export default function Navbar() {
               handleLogout={handleLogout}
               dispatch={dispatch}
               currentUser={currentUser}
+              onSearch={onSearch}
             />:
             <MobileNavbar
               setOpen={setOpen}
               open={open}
+              onSearch={onSearch}
             />
           }
         </div>
