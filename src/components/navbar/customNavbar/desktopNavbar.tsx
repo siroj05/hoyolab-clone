@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { FormEvent, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import InputSearch from "../InputSearch";
 import { Bell, PencilLine } from "lucide-react";
@@ -13,6 +13,7 @@ interface Props {
   handleLogout: () => void;
   dispatch: AppDispatch;
   currentUser: currentUser;
+  onSearch : (e : FormEvent<HTMLFormElement>) => void
 }
 
 export default function DekstopNavbar({
@@ -21,6 +22,7 @@ export default function DekstopNavbar({
   handleLogout,
   dispatch,
   currentUser,
+  onSearch
 }: Props) {
   
 
@@ -38,7 +40,7 @@ export default function DekstopNavbar({
         </Link>
       </div>
       <div className="w-full flex justify-center my-1">
-        <InputSearch />
+        <InputSearch onSearch={onSearch} />
       </div>
       <div className="my-auto flex gap-3">
         <NewArticleNav/>
